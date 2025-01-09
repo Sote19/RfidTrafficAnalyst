@@ -1,4 +1,4 @@
-# RFID Trafic Analyst <br> Desarrolladores: Xavi Conde, Gerard Soteras
+# RFID Traffic Analyst <br> Desarrolladores: Xavi Conde, Gerard Soteras
 
 ## 💡  Explicación de la idea del proyecto
 <details>
