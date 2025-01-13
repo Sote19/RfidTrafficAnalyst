@@ -1,5 +1,7 @@
 # RFID Traffic Analyst <br> Desarrolladores: Xavi Conde, Gerard Soteras
-# Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales mediante el análisis del flujo y tiempo de permanencia en los stands, todo en tiempo real.
+Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales mediante el análisis del flujo y tiempo de permanencia en los stands, todo en tiempo real.
+<hr>
+
 ## 💡  Explicación de la idea del proyecto
 <details>
   <summary>Explicación 🔽</summary>
