@@ -90,3 +90,24 @@ El sistema funcionará de la siguiente manera: a los participantes se les propor
 </details>
 
 ![perro](/assets/images.jpg)
+
+
+<hr>
+
+# 📎 Anexos
+En este apartado se encuentran los detalles más específicos de configuración del proyecto.
+
+## Anexo 1
+<details>
+  <summary>Ver anexo 🔽</summary>
+</details>
+
+<hr>
+
+# 🚩 Informe de errores
+En este apartado se encuantran todas las dificultades y errores que han ido surgiendo a medida que progresava el proyecto.
+
+## Errores con ...
+<details>
+  <summary>Ver informe 🔽</summary>
+</details>
