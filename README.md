@@ -88,3 +88,5 @@ El sistema funcionará de la siguiente manera: a los participantes se les propor
   - Trello
   - GitHub
 </details>
+
+![perro](/assets/images.jpg)
