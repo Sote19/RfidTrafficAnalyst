@@ -20,17 +20,17 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
   
   *Con todo esto hemos realizado la siguiente estructura, donde resume los objetivos que buscaremos cumplir.*
 
-- **1 (Objetivo General)** - Diseñar y trabajar una red con dispositivos IoT.
-- - **1.1 (Objetivo Específico)** - Programar dispositivos IoT que transfieran por radiofrecuencia  
-- - - **1.1.1 (Objetivo Operativo)** - Utilizar placas RaspBerry-Pi y antenas compatibles  
-- - - **1.1.2 (Objetivo Operativo)** - Trabajar con etiquetas RFID  
+- **1 (Objetivo General)** - Diseñar y desarrollar una red de dispositivos IoT que utilice tecnología de transmisión por radiofrecuencia para recopilar y analizar datos en tiempo real.
+- - **1.1 (Objetivo Específico)** - Programar dispositivos IoT capaces de interactuar mediante tecnología de radiofrecuencia.  
+- - - **1.1.1 (Objetivo Operativo)** - Implementar placas Raspberry Pi con antenas RFID compatibles para gestionar la detección y transmisión de datos.  
+- - - **1.1.2 (Objetivo Operativo)** - Configurar y trabajar con etiquetas RFID pasivas para la identificación precisa de participantes.  
 
-- **2 (Objetivo General)** - Trabajar en ferias comerciales y eventos.  
-- - **2.1 (Objetivo Específico)** - Potenciar la autonomía del sistema actual en ferias y eventos 
-- - - **2.1.1 (Objetivo Operativo)** - Recopilar datos en tiempo real  
-- - **2.2 (Objetivo Específico)** - Securizar el tráfico de los datos obtenidos
-- - - **2.2.1 (Objetivo Operativo)** - Crear reglas de acceso en la base de datos
-- - - **2.2.2 (Objetivo Operativo)** - Trabajar con protocolos cifrados y copias de seguridad  
+- **2 (Objetivo General)** - Aplicar el sistema IoT en ferias comerciales y eventos para generar datos valiosos sobre el comportamiento del público y mejorar estrategias empresariales.  
+- - **2.1 (Objetivo Específico)** - Optimizar la autonomía y capacidad del sistema para recopilar y analizar datos en entornos dinámicos. 
+- - - **2.1.1 (Objetivo Operativo)** - Recopilar datos en tiempo real sobre el número de asistentes, ubicación y tiempo de permanencia en cada puesto.  
+- - **2.2 (Objetivo Específico)** - Asegurar la integridad, confidencialidad y disponibilidad de los datos recopilados por el sistema.
+- - - **2.2.1 (Objetivo Operativo)** - Implementar reglas de acceso y control en la base de datos para garantizar la seguridad de la información.
+- - - **2.2.2 (Objetivo Operativo)** - Usar protocolos cifrados para la transmisión de datos y mantener copias de seguridad automáticas para prevenir pérdida de información.  
 
 
 </details>
