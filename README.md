@@ -66,7 +66,7 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 <details>
   <summary>Base de Datos 🔽</summary>
   
-  - Google Firebase
+  - Google Firebase o MySQL
 </details>
 
 <details>
