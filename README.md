@@ -91,8 +91,31 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
   - GitHub
 </details>
 
-![perro](/assets/images.jpg)
+<hr>
 
+## 🔨  Arquitectura del sistema
+<details>
+  <summary>Explicación 🔽</summary>
+  Implementaremos una arquitectura basada en **tres capas**, diseñada para optimizar la recopilación, almacenamiento y análisis de datos provenientes de los dispositivos IoT con tecnología RFID. Esta estructura modular permite trabajar en cada capa de forma independiente, lo que facilita el desarrollo, la escalabilidad y el mantenimiento del sistema.
+  
+  Las tres capas se dividirán:
+  - Capa de Dispositivos IoT (Cliente): Esta capa incluye las etiquetas RFID pasivas y las antenas RFID conectadas al Arduino. Los dispositivos detectan y transmiten los datos recopilados.
+  - Capa de Procesamiento (Servidor): Encargada de recibir los datos desde los Arduinos, procesarlos, almacenarlos temporalmente y transferirlos a la base de datos central. Aquí se manejan las conexiones seguras y la lógica para garantizar la fiabilidad de los datos.
+  - Capa de Almacenamiento y Análisis (BBDD): Se utiliza para almacenar de forma permanente los datos recopilados y procesados, permitiendo análisis posteriores. La base de datos será securizada para proteger la integridad y confidencialidad de la información.
+</details>
+
+<details>
+  <summary>Tabla de arquitectura de los sistemas 🔽</summary>
+  
+  | Máquina       | S.O                  | Almacenamiento / Memoria| Servicio     | 
+  |---------------|----------------------|-------------------------|--------------|
+  | **Proxmox**   |Proxmox-VE 8.2        | 93Gb / 8Gb              |  Hypervisor  |
+  | **Router**    |Ubuntu server 22.04.2 | 14Gb / 4Gb              |  DHCP        |
+  | **MySQL**     |Ubuntu server 22.04.2 | 14Gb / 4Gb              |Base de datos |
+  | **Pi-Hole**   |Debian 12.7.0         | 14Gb / 512Mb            |      DNS     |
+  | **Arduino**   |                      |                         | Lector RFID  |
+  | **NGinx**     |Ubuntu server 22.04.2 | 14Gb / 4Gb              |    Hosting   |
+</details>
 
 <hr>
 
