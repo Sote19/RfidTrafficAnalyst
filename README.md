@@ -96,7 +96,7 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 ## 🔨  Arquitectura del sistema
 <details>
   <summary>Explicación 🔽</summary>
-  Implementaremos una arquitectura basada en **tres capas**, diseñada para optimizar la recopilación, almacenamiento y análisis de datos provenientes de los dispositivos IoT con tecnología RFID. Esta estructura modular permite trabajar en cada capa de forma independiente, lo que facilita el desarrollo, la escalabilidad y el mantenimiento del sistema.
+  Implementaremos una arquitectura basada en *tres capas*, diseñada para optimizar la recopilación, almacenamiento y análisis de datos provenientes de los dispositivos IoT con tecnología RFID. Esta estructura modular permite trabajar en cada capa de forma independiente, lo que facilita el desarrollo, la escalabilidad y el mantenimiento del sistema.
   
   Las tres capas se dividirán:
   - Capa de Dispositivos IoT (Cliente): Esta capa incluye las etiquetas RFID pasivas y las antenas RFID conectadas al Arduino. Los dispositivos detectan y transmiten los datos recopilados.
@@ -118,6 +118,13 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 </details>
 
 <hr>
+# Estilo de Marca
+## 🛡️ Logotipo
+<details>
+  <summary>Explicación</summary>
+</details>
+  <summary>Imagen del logotipo</summary>
+
 
 # 📎 Anexos
 En este apartado se encuentran los detalles más específicos de configuración del proyecto.
