@@ -122,13 +122,31 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 # Estilo de Marca
 ## 🛡️ Logotipo
 <details>
-  <summary>Explicación</summary>
+  <summary>Explicación 🔽</summary>
+  En este proyecto, hemos diseñado un logotipo que refleja los valores de innovación y dinamismo asociados a nuestra tecnología RFID. La forma principal está inspirada en una onda, un elemento que simboliza tanto la conectividad como el flujo constante de información, pilares fundamentales de nuestra actividad. La onda se presenta atravesando un objeto, lo que transmite una sensación de movimiento y energía, reforzando la idea de una tecnología que nunca se detiene y que conecta de manera fluida diferentes elementos.
+  
+  Los colores principales seleccionados para el logotipo son:
+  - Azul (#136AD3): Representa la confianza, la estabilidad y el carácter tecnológico de nuestra marca. Es un color asociado tradicionalmente con la innovación y la precisión técnica.
+  - Naranja (#F26419): Un tono vibrante que aporta energía, creatividad y entusiasmo, equilibrando la seriedad del azul con un toque más humano y cercano.
+  
+  Como color auxiliar, se utiliza el negro (#000000), que añade contraste, elegancia y versatilidad al diseño, permitiendo que el logotipo funcione eficazmente en una variedad de aplicaciones y contextos.
+  
+  Este logotipo no solo busca ser visualmente atractivo, sino también comunicar de manera clara y efectiva los valores que nuestra empresa representa. Es una imagen moderna, versátil y funcional, diseñada para destacar en un entorno competitivo.
 </details>
-<details>
-  <summary>Imagen del logotipo</summary>
 
-![/assets/rfid_logo.svg](assets/rfid_logo.svg)
+<details>
+  <summary>Paleta de color 🔽</summary>
+  
+![paleta de color](assets/paleta_rfid.png)
 </details>
+  
+<details>
+  <summary>Imagen del logotipo 🔽</summary>
+
+![logotipo rfid](assets/rfid_logo.png)
+</details>
+
+<hr>
 
 # 📎 Anexos
 En este apartado se encuentran los detalles más específicos de configuración del proyecto.
