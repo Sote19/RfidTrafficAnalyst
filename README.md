@@ -118,12 +118,15 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 </details>
 
 <hr>
+
 # Estilo de Marca
 ## 🛡️ Logotipo
 <details>
   <summary>Explicación</summary>
 </details>
   <summary>Imagen del logotipo</summary>
+
+  (logotipo)[/assets/rfid_logo.svg]
 
 
 # 📎 Anexos
