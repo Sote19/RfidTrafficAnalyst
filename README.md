@@ -285,7 +285,50 @@ En este apartado se encuentran los detalles más específicos de configuración 
 # 🚩 Informe de errores
 En este apartado se encuantran todas las dificultades y errores que han ido surgiendo a medida que progresava el proyecto.
 
-## Errores con ...
+## Errores con el router
 <details>
   <summary>Ver informe 🔽</summary>
+A la hora de configurar el router, tuvimos sobre todo problemas con errores tipográficos. Esto sucedió tanto en la configuración de Netplan como en la configuración de las reglas de IPtables.
+Además, tuvimos varios problemas al intentar guardar las reglas de IPtables, ya que, al reiniciar el router, algunas reglas desaparecían. Esto ocurría porque las reglas no se guardaban de modo persistente.
 </details>
+  
+## Errores Pi-hole DNS Server
+<details>
+  <summary>Ver informe 🔽</summary>
+  
+  En la version de **Proxmox 8.2.2**, el archivo ```/etc/resolv.conf``` se sobrescribe automáticamente dos veces al reiniciar el contenedor debido a:
+
+  **1a vez:** *Servicio systemd-resolved:* Modifica el archivo de configuración DNS, de manera automática.
+
+  **2a vez:** *Proxmox:* Sobrescribe el archivo durante el inicio del contenedor.
+
+  Esto provoca que:
+    **No** podemos modificar manualmente el archivo /etc/resolv.conf.
+    **No** se pueden ejecutar scripts que cambien el archivo en el arranque del contenedor.
+    **No** se puede filtrar el tráfico DNS adecuadamente.
+    El DNS **siempre** se establece en 8.8.8.8, ignorando configuraciones internas.
+    Entre muchas otras conseqüencias...
+    
+  ✅**SOLUCIÓN**
+  **Paso 1:** *Detener el servicio systemd-resolved*
+  Detenemos el servicio para evitar que sobrescriba el archivo DNS.
+  
+```
+systemctl disable systemd-resolved
+systemctl stop systemd-resolved
+```
+
+  **Paso 2:** *Configurar DNS en cada arranque. utilizando ```crontab```*
+
+  Modificar el archivo crontab, ya que este archivo ejecuta instrucciones de manera persistente.
+
+```
+#Localizacion del archivo /tmp/crontab.RwAtVi/crontab
+crontab -e
+@reboot echo "nameserver 127.0.0.1" > /etc/resolv.conf #Añadir esta linea, dentro del archivo
+```
+
+  Esta línea asegura que el archivo ```/etc/resolv.conf``` apunte al servidor DNS local (127.0.0.1) en cada reinicio, evitando sobrescrituras por parte de Proxmox o systemd-resolved.
+  Con estos pasos, se asegura que el contenedor de Pi-hole utilice su propio servidor DNS de manera persistente, permitiendo un filtrado efectivo del tráfico DNS y manteniendo la configuración deseada entre reinicios.
+</details>
+
