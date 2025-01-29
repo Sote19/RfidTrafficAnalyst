@@ -225,6 +225,8 @@ sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.BKP   # creación de la copia 
 sudo nano /etc/dhcp/dhcpd.conf                          # modificación del archivo de configuración
 sudo nano /etc/default/isc-dhcp-server                  # modificación del archivo de asiganción de interfaz
 ```
+
+  ### Configuración de IPTables
 </details>
 
 > 📎 [**Ver _anexo 2_ para configuración del Router**](#anexo-2-configuración-del-router)
@@ -252,6 +254,7 @@ En este apartado se encuentran los detalles más específicos de configuración 
   Activamos y configuramos la función QEMU, para que nos sea mucho más fácil trabajar con las IP's existentes sin necesidad de acceder a la máquina.
   
   ![configuración de proxmox qemu](assets/qemuproxmox.png)
+  ### Configuración IPtables
 </details>
 
 ## Anexo 2 (configuración del Router)
