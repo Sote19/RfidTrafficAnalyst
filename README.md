@@ -91,8 +91,6 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
   - GitHub
 </details>
 
-<hr>
-
 ## 🔨  Arquitectura del sistema
 <details>
   <summary>Explicación 🔽</summary>
@@ -208,14 +206,88 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
 > [!IMPORTANT]
 > Las funciones del cliente y Nginx se verán modificadas por la futura integración de Cloudflare en el proyecto. Más adelante veremos como afecta.
 
+## 🛠️  Configuración de ROUTER
+<details>
+  <summary>Explicación 🔽</summary>
+  Primero configuramos la red del router. Para ello cambiaremos el netplan ajustando las IP según la red, virtual o aula. Con ens18 identificaremos la red del aula y con ens19 la red virtual.
+  Además, hemos implementado el servicio de DHCP en el router para que todos los dispositivos que estén dentro de la red virtual puedan obtener una IP sin necesidad de asignarla manualmente.
+  
+  ### Configuración de DHCP
+  Para configurar el servicio DHCP, primero lo instalaremos en el router con el comando correspondiente. Luego crearemos una copia de seguridad del archivo de configuración para conservar la configuración original. Procederemos a editar el archivo de configuración y, en nuestro caso, hemos asignado el rango de IPs de *10.20.30.20* a *10.20.30.50*.
+  
+  También configuraremos distintas IPs para que siempre se asignen a las máquinas con los servicios de nuestra red de Proxmox, haciendo uso de su MAC. Gracias a esto conseguimos que siempre que se inicien las máquinas, tengan la misma dirección IP. Además, modificaremos el archivo ```isc-dhcp-server``` para indicar al router que funcione como servidor DHCP en la interfaz ens19.
+
+```
+# comandos usados
+
+sudo apt install isc-dhcp-server                        # instalación del servicio DHCP
+sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.BKP   # creación de la copia de archivo
+sudo nano /etc/dhcp/dhcpd.conf                          # modificación del archivo de configuración
+sudo nano /etc/default/isc-dhcp-server                  # modificación del archivo de asiganción de interfaz
+```
+</details>
+
+> 📎 [**Ver _anexo 2_ para configuración del Router**](#anexo-2-configuración-del-router)
+>
+> 🚩 [Ver informe de errores](#errores-con-el-router)
+
 <hr>
 
 # 📎 Anexos
 En este apartado se encuentran los detalles más específicos de configuración del proyecto.
 
-## Anexo 1
+## Anexo 1 (entorno ProxMox)
 <details>
   <summary>Ver anexo 🔽</summary>
+  
+  ### Adaptador puente
+  Asignamos al router que use un adaptador puente para que pueda comunicar el interior de la red, con el exterior. Esto lo hacemos configurando el vmbr0 con la red externa y añadiendo un nuevo adaptador vmbr1 con la IP de la red virtual.
+  
+  ![adaptador puente](assets_bf/adaptador_puente_prox.png)
+  ### Interfaz de red para el router
+  Aquí podemos ver que una vez realizadas las acciones de la imagen anterior, el router ya nos reconocerá como hardware, las dos interfaces de red.
+  
+  ![interfaz red router](assets_bf/interfaz_red_router.png)
+  ### Borrador de arquitectura de red inicial
+  Esta es la arquitectura de red que usamos inicialmente para guiarnos durante la configuración de todo nuestro entorno, la usamos como base y una vez creada y configurada, le fuimos añadiendo servicios y equipos para mejorar la seguridad y el funcionamiento.
+  
+  ![diagrama de red](assets_bf/diagrama_red.png)
+  ### Panel de configuración para activar QEMU
+  Activamos y configuramos la función QEMU, para que nos sea mucho más fácil trabajar con las IP's existentes sin necesidad de acceder a la máquina.
+  
+  ![configuración de proxmox qemu](assets_bf/qemuproxmox.png)
+</details>
+
+## Anexo 2 (configuración del Router)
+<details>
+  <summary>Ver anexo 🔽</summary>
+  
+  ### Netplan del router
+  Esta configuración es extremadamente importante para que el router garantice la total comunicación entre la red interna y la externa, en la primera parte vemos la configuración para la red 100.77.20.0/24 (externa) y en la segunda parte 10.20.30.0/24 (virtual).
+  
+  ![netplan de router](assets_bf/netplan_router.png)
+  ### Archivo sysctl
+  Configuramos el router para que pueda hacer de gateway y pueda enrutar el tráfico de red para garantizar la comunicación en las redes presentes en el archivo "netplan".
+  
+  ![sysctl](assets_bf/sysctl.png)
+  ### Archivo de configuración DHCP en el router
+  Añadimos y modificamos las lineas necesarias en para que el router haga de DHCP en la red 10.20.30.0/24. Para garantizar la seguridad y la redundancia de IP's dentro de esta red, además configuramos una línea para que empiece a asignar IP's a partir de la 10.20.30.20, para poder añadir contenedores, equipos y servidores sin que afecten a la asignacion de IP's.
+  
+  ![configuracion dhcp](assets_bf/configuracion_dhcp.png)
+  ### Archivo de configuración ISC-DHCP en el router
+  Con estas líneas le pedimos al router que asigne direcciones IP solo en la interfaz ens19 para IPv4, usando las rutas de configuración y PID predeterminadas. No está configurado para IPv6.
+
+  ![configuracion isc](assets_bf/router_isc_dhcp.png)
+  ### Configuración IPtables
+  PREROUTING: Redirige el tráfico entrante en el puerto 80 (HTTP) de la interfaz ens18 hacia la IP interna 10.20.30.20:80.
+  
+  POSTROUTING: Aplica MASQUERADE en la interfaz ens18, permitiendo que las direcciones IP privadas salgan a Internet usando la IP pública de la interfaz.
+  
+  ![configuracion iptables](assets_bf/iptables.png)
+  ### Instalación IPtablesPersistent
+  Permitimos que las IPTables sean persistentes. Para que no se borren ni se sobreescriban.
+  
+  ![menu iptablespersistent](assets_bf/iptablespersistent.png)
 </details>
 
 <hr>
