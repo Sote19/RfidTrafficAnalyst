@@ -120,7 +120,7 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 <hr>
 
 # Estilo de Marca
-## 🛡️ Logotipo
+## 🖼️ Logotipo
 <details>
   <summary>Explicación 🔽</summary>
   En este proyecto, hemos diseñado un logotipo que refleja los valores de innovación y dinamismo asociados a nuestra tecnología RFID. La forma principal está inspirada en una onda, un elemento que simboliza tanto la conectividad como el flujo constante de información, pilares fundamentales de nuestra actividad. La onda se presenta atravesando un objeto, lo que transmite una sensación de movimiento y energía, reforzando la idea de una tecnología que nunca se detiene y que conecta de manera fluida diferentes elementos.
@@ -130,8 +130,6 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
   - Naranja (#F26419): Un tono vibrante que aporta energía, creatividad y entusiasmo, equilibrando la seriedad del azul con un toque más humano y cercano.
   
   Como color auxiliar, se utiliza el negro (#000000), que añade contraste, elegancia y versatilidad al diseño, permitiendo que el logotipo funcione eficazmente en una variedad de aplicaciones y contextos.
-  
-  Este logotipo no solo busca ser visualmente atractivo, sino también comunicar de manera clara y efectiva los valores que nuestra empresa representa. Es una imagen moderna, versátil y funcional, diseñada para destacar en un entorno competitivo.
 </details>
 
 <details>
@@ -156,16 +154,19 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
 ## 🟠  Entorno ProxMox
 <details>
   <summary>Explicación 🔽</summary>
-  Dentro de Proxmox, configuraremos una red NAT para que todas las máquinas virtuales que creemos tengan conexión entre ellas.
-  Como elementos principales, tendremos tres Ubuntu Servers. Uno de ellos funcionará como router virtual y proporcionará DHCP El otro nos proporcionara el hosting usando Nginx y un tercero nos proporcionará un hosting de respaldo. 
-  Estos tres servidores acompañados de una maquina virtual que trabajará como cliente y un contenedor LXC que nos proporcionará el servicio DNS utilizando Pi-Hole.
-    
-  Para crear la red NAT con la que se comunicarán las máquinas dentro de Proxmox, añadiremos un "Linux Bridge" y lo configuraremos para crear la red interna, a la que llamaremos vmbr1. Por defecto, la red externa (en nuestro caso la del aula) se llama vmbr0.
+  Dentro de Proxmox, configuraremos una red NAT para que todas las máquinas virtuales tengan conectividad interna.
   
-  El proceso que seguimos fue el siguiente: primero, instalamos y configuramos la máquina router. Al añadir la máquina, le asignamos la nueva interfaz de red que creamos anteriormente en el apartado de hardware. Una vez configurado el router, duplicamos la máquina para crear el equipo cliente, y modificamos el netplan para que tenga su propia dirección IP dentro de la red interna. En los anexos dejamos el primer borrador de la arquitectura de red que hicimos.
+  El sistema contará con cuatro servidores Ubuntu con funciones específicas:
+  - Router virtual (DHCP): Gestionará el tráfico de red y asignará direcciones IP mediante DHCP.
+  - Servidor Pi-Hole (DNS): Actuará como servidor DNS para todos los dispositivos dentro de la red, mejorando la gestión de nombres y bloqueando contenido no deseado.
+  - Servidor de contenedores (Docker): Alojará nuestra base de datos y un servicio NGINX, que en el futuro permitirá el manejo individualizado de datos para cada empresa en las ferias.
+  - Servidor de backups: Almacenará copias de seguridad de la base de datos para garantizar la integridad y disponibilidad de la información.
+  
+  Para crear la red NAT con la que se comunicarán las máquinas dentro de Proxmox, añadiremos un "Linux Bridge" y lo configuraremos para crear la red interna, a la que llamaremos vmbr1. Por defecto, la red externa (en nuestro caso la del aula) se llama vmbr0.
+  El proceso que seguimos fue el siguiente: primero, instalamos y configuramos la máquina router. Al añadir la máquina, le asignamos la nueva interfaz de red que creamos anteriormente en el apartado de hardware. Una vez configurado el router, duplicamos la máquina para crear el equipo cliente, y modificamos el netplan para que tenga su propia dirección IP dentro de la red interna. 
   
   ### Configuración de QEMU
-  Instalaremos en la máquina cliente y en el router el paquete qemu-guest-agent. Gracias a esto, podremos administrar las máquinas virtuales de una manera más fácil.
+  Instalaremos en el router el paquete qemu-guest-agent. Gracias a esto, podremos administrar las máquinas virtuales de una manera más fácil.
   Una vez instalado en las máquinas, es necesario configurar las máquinas virtuales que nos ofrece Proxmox.
 </details>
 
@@ -174,17 +175,17 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
 ## 🕸️  Arquitectura de Red
 <details>
   <summary>Explicación 🔽</summary>
-  Para nuestro proyecto, hemos configurado una red virtual utilizando Proxmox, en la cual hemos desplegado todos los servicios esenciales para nuestro gestor de contraseñas. En la imagen se observa la división entre el 'Entorno Aula' y el 'Entorno Proxmox'.
-  En el Entorno Aula (100.77.20.0/24), contamos con acceso a internet y dispositivos físicos que se comunican con el router, mientras que en el Entorno Proxmox (10.20.30.0/24), hemos creado una red privada donde residen los servidores y servicios internos, proporcionando un entorno controlado para nuestro sistema.
+  El sistema estará dividido en dos redes principales:
+  - IOT Evento: Donde se encuentran las etiquetas RFID que llevarán los asistentes en el evento. Estas etiquetas se comunican con los lectores RFID a través de una antena. Los lectores capturan los datos y los envían a nuestro servidor en el evento, que ejecuta Proxmox.
+  - Red Proxmox: Red interna donde estarán los servicios esenciales del sistema.
   
-  Cada dispositivo en Proxmox cumple un rol específico:
-  - Router: conecta ambas redes, actúa como gateway y distribuye direcciones IP mediante DHCP en la red de Proxmox.
-  - Pi-hole (10.20.30.2): configurado como servidor DNS, filtra y redirige las solicitudes DNS dentro de la red interna.
-  - Nginx (10.20.30.20): ofrece el servicio web (Nginx), primeramente accesible desde la red del aula mediante una regla en IPTables. 
-  - Firebase: proporciona los servicios de base de datos y hosting necesarios para el funcionamiento del gestor de contraseñas.
-  
-  En la imagen, los dispositivos que ofrecen servicios se encuentran subrayados en verde, mientras que aquellos que consumen servicios están subrayados en rojo.
-  También se ha indicado si las IPs son estáticas para facilitar la configuración y el acceso a cada servicio. De esta forma, el diseño asegura que cada dispositivo esté claramente identificado y cumpla su función en la red interna de Proxmox.
+  Dentro del entorno virtualizado en Proxmox, tendremos varios servidores con funciones específicas:
+  - Router Virtual (DHCP): Conecta ambas redes y asigna direcciones IP dentro de la Red Proxmox.
+  - Servidor Pi-Hole (DNS): Actúa como servidor DNS para todos los dispositivos dentro de la red, facilitando la gestión de nombres de dominio.
+  - Servidor de contenedores (Docker): Alojará nuestra base de datos MySQL y un servicio Nginx, que permitirá a las empresas de los stands acceder a una página privada con los datos recopilados por su antena RFID.
+  - Servidor de backups: Se encargará de realizar copias de seguridad de la base de datos para garantizar la integridad y disponibilidad de la información.
+
+  Para crear la red NAT con la que se comunicarán las máquinas dentro de Proxmox, añadiremos un Linux Bridge (vmbr1) para la red interna, manteniendo vmbr0 como la conexión externa del evento.
 </details>
 
 <details>
@@ -200,10 +201,7 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
   |------------------|--------------------------------------------|-------------------------------------|-------------------------------|
   | Proxmox          | 100.77.20.113                              | 100.77.20.1                         | 100.77.20.0/24                |
   | VM Ubuntu Router | 100.77.20.77 (externa)<br>10.20.30.1 (interna) | 100.77.20.1 (externa)<br>10.20.30.1 (interna) | vmbr0 (100.77.20.0/24)<br>vmbr1 (10.20.30.0/24) |
-  | Nginx            | DHCP (fija por MAC a la IP 10.20.30.20)    | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         | 
-  | Pihole           | 10.20.30.5                                 | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
-  | FireBase         | 10.20.30.6                                 | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
-  | VM Ubuntu Cliente| DHCP                                       | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Pihole           | 10.20.30.10                                | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
 
 </details>
 
