@@ -144,6 +144,30 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 
 <hr>
 
+# 🏴󠁧󠁢󠁷 Docker
+Docker ofrece un método unificado para ejecutar su código. Actúa como un sistema operativo diseñado específicamente para contenedores. Así como una máquina virtual abstrae el hardware del servidor, los contenedores en Docker abstraen y virtualizan el sistema operativo del servidor, simplificando su gestión.
+
+## Preguntas sobre Docker
+
+<details>
+  <summary>¿Qué diferencias hay entre los contenedores de Docker y los LXC? 🔽</summary>
+  Los contenedores de Docker y LXC (Linux Containers) difieren principalmente en su enfoque y nivel de abstracción. Docker está diseñado para empaquetar y ejecutar aplicaciones junto con sus dependencias, proporcionando un entorno estandarizado y fácil de gestionar mediante herramientas como docker-compose. En cambio, LXC ofrece una virtualización más ligera de sistemas completos, permitiendo mayor flexibilidad y personalización, aunque requiere más configuración manual. Mientras que Docker se basa en imágenes preconfiguradas y ofrece un mayor aislamiento mediante namespaces y cgroups, LXC se asemeja más a un sistema host, brindando menos aislamiento. En resumen, Docker es ideal para la portabilidad y despliegue de aplicaciones, mientras que LXC es más adecuado para entornos que requieren una estructura similar a una máquina virtual.
+</details>
+
+<details>
+  <summary>¿Cuál es la diferencia entre una imagen y un contenedor en Docker? 🔽</summary>
+
+  - **Imagen**: Es un conjunto inmutable de capas que contiene el sistema base y las aplicaciones necesarias para ejecutarse. Es como una plantilla.
+  - **Contenedor**: Es una instancia en ejecución de una imagen. Puede tener cambios en tiempo de ejecución, pero estos no afectan la imagen base.
+
+    Ejemplo:
+    - `nginx:latest` es una **imagen**.
+    - Un servidor en ejecución basado en `nginx:latest` es un **contenedor**.
+  
+</details>
+
+<hr>
+
 # 🚀 PROXMOX
 Proxmox Virtual Environment (Proxmox VE) es un entorno de virtualización de servidores de código abierto. Es una distribución de GNU/Linux basada en Debian, con una versión modificada del Kernel Ubuntu LTS​ y permite desplegar y gestionar máquinas virtuales y contenedores LXC.
 
