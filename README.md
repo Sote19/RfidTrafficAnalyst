@@ -212,7 +212,17 @@ Docker ofrece un método unificado para ejecutar su código. Actúa como un sist
 </details>
 </details>
 
-
+<details>
+  <summary>¿Qué tipo de aplicaciones y servicios se pueden desplegar con docker? 🔽</summary>
+  
+  Docker permite desplegar una amplia variedad de aplicaciones y servicios en contenedores, incluyendo: 
+  - Servidores web como Nginx o Apache
+  - Aplicaciones backend con Node.js, Django
+  - Bases de datos como MySQL, PostgreSQL o MongoDB
+  - Servicios de mensajería como Redis.
+  
+  También facilita la ejecución de microservicios, entornos de desarrollo aislados y aplicaciones basadas en inteligencia artificial con herramientas como TensorFlow.
+</details>
 
 
 
