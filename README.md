@@ -144,11 +144,17 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 
 <hr>
 
-# 🏴󠁧󠁢󠁷 Docker
+# 󠁧󠁢󠁷🐋 Docker
 Docker ofrece un método unificado para ejecutar su código. Actúa como un sistema operativo diseñado específicamente para contenedores. Así como una máquina virtual abstrae el hardware del servidor, los contenedores en Docker abstraen y virtualizan el sistema operativo del servidor, simplificando su gestión.
 
-## Preguntas sobre Docker
+<details>
+  <summary>Preguntas Docker 🔽</summary>
 
+<details>
+  <summary>¿Qué son los contenedores de Docker? 🔽</summary>
+  Los contenedores de Docker son entornos ligeros y portátiles que permiten ejecutar aplicaciones de manera aislada junto con todas sus dependencias. Funcionan como una especie de "máquina virtual", pero sin la sobrecarga de un sistema operativo completo, ya que comparten el kernel del sistema anfitrión.
+</details>
+  
 <details>
   <summary>¿Qué diferencias hay entre los contenedores de Docker y los LXC? 🔽</summary>
   Los contenedores de Docker y LXC (Linux Containers) difieren principalmente en su enfoque y nivel de abstracción. Docker está diseñado para empaquetar y ejecutar aplicaciones junto con sus dependencias, proporcionando un entorno estandarizado y fácil de gestionar mediante herramientas como docker-compose. En cambio, LXC ofrece una virtualización más ligera de sistemas completos, permitiendo mayor flexibilidad y personalización, aunque requiere más configuración manual. Mientras que Docker se basa en imágenes preconfiguradas y ofrece un mayor aislamiento mediante namespaces y cgroups, LXC se asemeja más a un sistema host, brindando menos aislamiento. En resumen, Docker es ideal para la portabilidad y despliegue de aplicaciones, mientras que LXC es más adecuado para entornos que requieren una estructura similar a una máquina virtual.
@@ -164,6 +170,53 @@ Docker ofrece un método unificado para ejecutar su código. Actúa como un sist
     - `nginx:latest` es una **imagen**.
     - Un servidor en ejecución basado en `nginx:latest` es un **contenedor**.
   
+</details>
+
+<details>
+  <summary>¿Qué sucede con los datos cuando un contenedor se elimina? 🔽</summary>
+  Cuando un contenedor de Docker se elimina, por defecto todos los datos almacenados dentro de él desaparecen, ya que los contenedores están diseñados para ser efímeros. Sin embargo, se puede preservar la información ya sea configurando un volumen o un bind mount.
+</details>
+
+
+<details>
+  <summary>¿Cuáles son las ventajas de utilizar contenedores de docker? 🔽</summary>
+
+<details>
+  <summary>1️⃣ Portabilidad 🔽</summary>
+  
+  - Funciona igual en cualquier máquina que tenga Docker instalado, sin importar el sistema operativo.
+  - Se pueden compartir imágenes de Docker
+</details>
+<details>
+  <summary>2️⃣ Ligereza y eficiencia 🔽</summary>
+  
+  - A diferencia de las máquinas virtuales, los contenedores tienen menos consumo de recursos.
+  - A diferencia de las máquinas virtuales, los contenedores Docker se pueden iniciar de forma rápida y sencilla
+</details>
+<details>
+  <summary>3️⃣ Facilidad de despliegue y gestión 🔽</summary>
+  
+  - Gracias a Docker Compose, se puede definir y ejecutar múltiples contenedores con un solo archivo. 
+</details>
+<details>
+  <summary>4️⃣ Escalabilidad y modularidad 🔽</summary>
+  
+  - Con Docker se puede dividir aplicaciones en múltiples servicios independientes, facilitando el escalado y mantenimiento.
+  - Se puede desplegar múltiples instancias de una aplicación y balancear la carga de manera sencilla. 
+</details>
+<details>
+  <summary>5️⃣ Seguridad y aislamiento 🔽</summary>
+  
+  - Al trabajar con contenedores independientes, si surgiera algún imprevisto en un contenedor, el resto de ellos no se verían afectados al igual que el sistema host.
+  - Se pueden definir permisos y redes personalizadas para cada contenedor y así limitar el acceso a ellos.
+</details>
+</details>
+
+
+
+
+
+
 </details>
 
 <hr>
