@@ -224,9 +224,17 @@ Docker ofrece un método unificado para ejecutar su código. Actúa como un sist
   También facilita la ejecución de microservicios, entornos de desarrollo aislados y aplicaciones basadas en inteligencia artificial con herramientas como TensorFlow.
 </details>
 
-
-
-
+<details>
+  <summary>¿Qué otros tipos de contenedores existen además de docker? 🔽</summary>
+  
+  Además de Docker, existen otros tipos de contenedores y tecnologías de contenedorización como:
+  - Podman: Similar a Docker, pero sin necesidad de un demonio en segundo plano y con una arquitectura más segura basada en rootless containers.
+  - LXC (Linux Containers): Un enfoque más ligero que Docker, proporcionando entornos de sistema operativo completos sin el overhead de una máquina virtual.
+  - Kubernetes Containers: Aunque Kubernetes no es un motor de contenedores en sí, usa contenedores como Docker o containerd para orquestar y gestionar aplicaciones a gran escala.
+  - containerd: Un runtime ligero para la gestión de contenedores que forma la base de Docker y Kubernetes.
+  - CRI-O: Un runtime diseñado específicamente para Kubernetes, optimizado para la ejecución eficiente de contenedores en clústeres.
+  - Singularity: Enfocado en entornos de alto rendimiento y computación científica, permitiendo ejecutar contenedores sin necesidad de privilegios de root.
+</details>
 </details>
 
 <hr>
