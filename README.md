@@ -40,6 +40,7 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
   <summary>Organización 🔽</summary>
   Al ser un grupo que en el primer año del grado ya trabajamos juntos en varios proyectos, la organización resultó sencilla.
   Hemos decidido que todos haremos de todo, pero cada uno tendrá un rol de “líder” en cada apartado en el que hemos distribuido el proyecto, este líder será el encargado únicamente de marcar el ritmo y de comunicar al resto del grupo cómo vamos en relación con los objetivos y fechas acordados al inicio.
+  
   Al final de cada clase se pondrá en común el trabajo de cada integrante, con el objetivo de que todas las personas en todo momento sepan que se ha hecho ese día y si algún día hay una baja, que se pueda seguir trabajando con normalidad.
   En el aspecto de las tareas, todos haremos todas las tareas, sin excepción.
 </details>
@@ -59,14 +60,16 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
   <summary>Programación 🔽</summary>
 
    - JavaScript
-   - Node.JS
+   - PHP
+   - MySQL
    - Python
+   - Arduino
 </details>
 
 <details>
   <summary>Base de Datos 🔽</summary>
   
-  - Google Firebase o MySQL
+  - MySQL database
 </details>
 
 <details>
@@ -89,12 +92,24 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
   - Visual Studio
   - Trello
   - GitHub
+  - ChatGPT
 </details>
+
+<details>
+  <summary>Hardware 🔽</summary>
+  
+  - Placa Aruino
+  - Lector RFID
+  - Tarjeta RFID
+  - Cableado
+</details>
+
 
 ## 🔨  Arquitectura del sistema
 <details>
   <summary>Explicación 🔽</summary>
-  Implementaremos una arquitectura basada en *tres capas*, diseñada para optimizar la recopilación, almacenamiento y análisis de datos provenientes de los dispositivos IoT con tecnología RFID. Esta estructura modular permite trabajar en cada capa de forma independiente, lo que facilita el desarrollo, la escalabilidad y el mantenimiento del sistema.
+  
+  Implementaremos una arquitectura basada en **tres capas**, diseñada para optimizar la recopilación, almacenamiento y análisis de datos provenientes de los dispositivos IoT con tecnología RFID. Esta estructura modular permite trabajar en cada capa de forma independiente, lo que facilita el desarrollo, la escalabilidad y el mantenimiento del sistema.
   
   Las tres capas se dividirán:
   - Capa de Dispositivos IoT (Cliente): Esta capa incluye las etiquetas RFID pasivas y las antenas RFID conectadas al Arduino. Los dispositivos detectan y transmiten los datos recopilados.
@@ -103,7 +118,7 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 </details>
 
 <details>
-  <summary>Tabla de arquitectura de los sistemas 🔽</summary>
+  <summary>Tabla de arquitectura de los sistemas 🔽 ⚠️ </summary>
   
   | Máquina       | S.O                  | Almacenamiento / Memoria| Servicio     | 
   |---------------|----------------------|-------------------------|--------------|
@@ -144,7 +159,7 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 
 <hr>
 
-# 󠁧󠁢󠁷🐋 Docker
+# 󠁧󠁢󠁷🐋 Docker (introducción)
 Docker ofrece un método unificado para ejecutar su código. Actúa como un sistema operativo diseñado específicamente para contenedores. Así como una máquina virtual abstrae el hardware del servidor, los contenedores en Docker abstraen y virtualizan el sistema operativo del servidor, simplificando su gestión.
 
 <details>
@@ -253,7 +268,7 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
   - Router virtual (DHCP): Gestionará el tráfico de red y asignará direcciones IP mediante DHCP.
   - Servidor Pi-Hole (DNS): Actuará como servidor DNS para todos los dispositivos dentro de la red, mejorando la gestión de nombres y bloqueando contenido no deseado.
   - Servidor de contenedores (Docker): Alojará nuestra base de datos y un servicio NGINX, que en el futuro permitirá el manejo individualizado de datos para cada empresa en las ferias.
-  - Servidor de backups: Almacenará copias de seguridad de la base de datos para garantizar la integridad y disponibilidad de la información.
+  - Servidor de backups (Contenedor): Almacenará copias de seguridad de la base de datos para garantizar la integridad y disponibilidad de la información.
   
   Para crear la red NAT con la que se comunicarán las máquinas dentro de Proxmox, añadiremos un "Linux Bridge" y lo configuraremos para crear la red interna, a la que llamaremos vmbr1. Por defecto, la red externa (en nuestro caso la del aula) se llama vmbr0.
   El proceso que seguimos fue el siguiente: primero, instalamos y configuramos la máquina router. Al añadir la máquina, le asignamos la nueva interfaz de red que creamos anteriormente en el apartado de hardware. Una vez configurado el router, duplicamos la máquina para crear el equipo cliente, y modificamos el netplan para que tenga su propia dirección IP dentro de la red interna. 
@@ -268,6 +283,7 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
 ## 🕸️  Arquitectura de Red
 <details>
   <summary>Explicación 🔽</summary>
+  
   El sistema estará dividido en dos redes principales:
   - IOT Evento: Donde se encuentran las etiquetas RFID que llevarán los asistentes en el evento. Estas etiquetas se comunican con los lectores RFID a través de una antena. Los lectores capturan los datos y los envían a nuestro servidor en el evento, que ejecuta Proxmox.
   - Red Proxmox: Red interna donde estarán los servicios esenciales del sistema.
@@ -276,7 +292,7 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
   - Router Virtual (DHCP): Conecta ambas redes y asigna direcciones IP dentro de la Red Proxmox.
   - Servidor Pi-Hole (DNS): Actúa como servidor DNS para todos los dispositivos dentro de la red, facilitando la gestión de nombres de dominio.
   - Servidor de contenedores (Docker): Alojará nuestra base de datos MySQL y un servicio Nginx, que permitirá a las empresas de los stands acceder a una página privada con los datos recopilados por su antena RFID.
-  - Servidor de backups: Se encargará de realizar copias de seguridad de la base de datos para garantizar la integridad y disponibilidad de la información.
+  - Servidor de backups (Contenedor): Se encargará de realizar copias de seguridad de la base de datos para garantizar la integridad y disponibilidad de la información.
 
   Para crear la red NAT con la que se comunicarán las máquinas dentro de Proxmox, añadiremos un Linux Bridge (vmbr1) para la red interna, manteniendo vmbr0 como la conexión externa del evento.
 </details>
@@ -293,8 +309,15 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
   | Máquinas         | IP                                         | IP Gateway                          | Red                           |
   |------------------|--------------------------------------------|-------------------------------------|-------------------------------|
   | Proxmox          | 100.77.20.113                              | 100.77.20.1                         | 100.77.20.0/24                |
-  | VM Ubuntu Router | 100.77.20.77 (externa)<br>10.20.30.1 (interna) | 100.77.20.1 (externa)<br>10.20.30.1 (interna) | vmbr0 (100.77.20.0/24)<br>vmbr1 (10.20.30.0/24) |
+  | Router           | 100.77.20.77 (externa)<br>10.20.30.1 (interna) | 100.77.20.1 (externa)<br>10.20.30.1 (interna) | vmbr0 (100.77.20.0/24)<br>vmbr1 (10.20.30.0/24) |
   | Pihole           | 10.20.30.10                                | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Docker           | 10.20.30.15                                | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Docker > Portainer | 10.20.30.15:9443                         | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Docker > MySQL   | 10.20.30.15:xxxx                           | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Docker > PHPMyAdmin | 10.20.30.15:xxxx                        | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Docker > Nginx   | 10.20.30.15:88                             | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Contenedor BKP   | 10.20.30.16                                | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+
 
 </details>
 
@@ -321,7 +344,7 @@ sudo nano /etc/dhcp/dhcpd.conf                          # modificación del arch
 sudo nano /etc/default/isc-dhcp-server                  # modificación del archivo de asiganción de interfaz
 ```
 
-  ### Configuración de IPTables
+  ### Configuración de IPTables ⚠️
 </details>
 
 > 📎 [**Ver _anexo 2_ para configuración del Router**](#anexo-2-configuración-del-router)
