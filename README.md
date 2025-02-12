@@ -417,7 +417,7 @@ Además, tuvimos varios problemas al intentar guardar las reglas de IPtables, ya
 <details>
   <summary>Ver informe 🔽</summary>
   
-  En la version de **Proxmox 8.2.2**, el archivo ```/etc/resolv.conf``` se sobrescribe automáticamente dos veces al reiniciar el contenedor debido a:
+  En la version de **Proxmox 8.2 y 8.3**, el archivo ```/etc/resolv.conf``` se sobrescribe automáticamente dos veces al reiniciar la máquina debido a:
 
   **1a vez:** *Servicio systemd-resolved:* Modifica el archivo de configuración DNS, de manera automática.
 
