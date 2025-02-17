@@ -416,13 +416,14 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
   ```bash
 # comandos usados
 
+sudo apt install -y docker-compose  # instalar docker-compose
 docker-compose up -d  # crear los contenedores en segundo plano
 docker ps  # verificar que los contenedores están corriendo 
   ```
   
 </details>
 
-> 📎 [**Ver _anexo 3_ para configuración de Docker**](#anexo-3-configuración-de-docker) ⚠️
+> 📎 [**Ver _anexo 3_ para configuración de Docker**](#anexo-3-configuración-de-docker)
 >
 > 🚩 [Ver informe de errores](#errores-con-docker) ⚠️
 <hr>
