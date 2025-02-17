@@ -425,7 +425,7 @@ docker ps  # verificar que los contenedores están corriendo
 
 > 📎 [**Ver _anexo 3_ para configuración de Docker**](#anexo-3-configuración-de-docker)
 >
-> 🚩 [Ver informe de errores](#errores-con-docker) ⚠️
+> 🚩 [Ver informe de errores](#errores-con-docker)
 <hr>
 
 # 📎 Anexos
@@ -497,14 +497,14 @@ En este apartado se encuentran los detalles más específicos de configuración 
 # 🚩 Informe de errores
 En este apartado se encuantran todas las dificultades y errores que han ido surgiendo a medida que progresava el proyecto.
 
-## Errores con el router
+## Errores con el router 🚩
 <details>
   <summary>Ver informe 🔽</summary>
 A la hora de configurar el router, tuvimos sobre todo problemas con errores tipográficos. Esto sucedió tanto en la configuración de Netplan como en la configuración de las reglas de IPtables.
 Además, tuvimos varios problemas al intentar guardar las reglas de IPtables, ya que, al reiniciar el router, algunas reglas desaparecían. Esto ocurría porque las reglas no se guardaban de modo persistente.
 </details>
   
-## Errores Pi-hole DNS Server
+## Errores Pi-hole DNS Server 🚩
 <details>
   <summary>Ver informe 🔽</summary>
   
@@ -544,3 +544,4 @@ crontab -e
   Con estos pasos, se asegura que el contenedor de Pi-hole utilice su propio servidor DNS de manera persistente, permitiendo un filtrado efectivo del tráfico DNS y manteniendo la configuración deseada entre reinicios.
 </details>
 
+## Errores con Docker 🚩
