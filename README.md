@@ -365,7 +365,7 @@ sudo nano /etc/default/isc-dhcp-server                  # modificación del arch
 <details>
   <summary>🛠️  Configuración Docker 🔽</summary>
 
-Para desplegar nuestros contenedores, primero creamos una máquina virtual en Proxmox, a la cual le asignamos una IP fija: 10.20.30.15 dentro de nuestra red interna.
+Para desplegar nuestros contenedores, primero creamos una máquina virtual en Proxmox, a la cual le asignamos la IP fija `10.20.30.15` dentro de nuestra red interna.
 
 Una vez creada la VM, procedimos a instalar Docker. Como solo usamos un usuario llamado "docker", añadiremos dicho usuario al grupo de Docker y le damos todos los permisos para que pueda crear y administrar los contenedores. 
 
@@ -388,9 +388,25 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 
   Para agilizar el despliegue de los contenedores que contendrán nuestra página web y base de datos, utilizamos Docker-Compose. Con esta herramienta, podemos definir y gestionar múltiples servicios en un solo archivo de configuración `(docker-compose.yml)`, lo que facilita la implementación y administración del entorno.
 
-  [Archivo de configuración docker-compose](assets/docker-compose.yml)
+  [📑 Archivo de configuración docker-compose](assets/docker-compose.yml)
+
+  📑 **Servicios incluidos**
+  | Servicio     | Función                                        |
+  |--------------|------------------------------------------------|
+  | **PHP-FPM**  | Procesamiento de archivos PHP                  |
+  | **MySQL**    | Base de datos para almacenamiento de información |
+  | **phpMyAdmin** | Interfaz web para gestionar MySQL            |
+  | **Nginx**    | Servidor web que maneja las peticiones HTTP    |
 
   Con esta configuración, conseguimos un entorno completo con PHP, MySQL, phpMyAdmin y Nginx, todos conectados en una red interna de Docker (app-network), lo que facilita la gestión y escalabilidad de nuestra aplicación.
+
+  ```bash
+# comandos usados
+
+docker-compose up -d  # crear los contenedores en segundo plano
+docker ps  # verificar que los contenedores están corriendo 
+     ```
+  ```
   
 </details>
 
