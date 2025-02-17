@@ -1,0 +1,56 @@
+﻿services:
+
+
+  # PHP service
+  phpfpm:
+    image: php:8-fpm
+    container_name: phpfpm
+    volumes:
+      - ./html:/var/www/html/
+    networks:
+      - app-network
+  # MySQL database service
+  db:
+    image: mysql:8.0
+    container_name: MySQL
+    ports:
+      - "1234:1234"
+    environment:
+      MYSQL_ROOT_PASSWORD: Mangorfid
+    volumes:
+      - ./mysql/:/var/lib/mysql
+      - ./sql:/mysql
+    networks:
+      - app-network
+
+
+  # PHPMYADMIN
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: PhpMyAdmin
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - 8080:80
+    networks:
+      - app-network
+
+
+  # Nginx service
+  nginx:
+    image: nginx
+    container_name: Nginx
+    working_dir: /etc/nginx
+    ports:
+      - 88:80
+    volumes:
+      - ./html:/var/www/html/
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx:/var/log/nginx/
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge
