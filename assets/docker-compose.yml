@@ -1,5 +1,4 @@
-﻿services:
-
+services:
 
   # PHP service
   phpfpm:
@@ -9,6 +8,8 @@
       - ./html:/var/www/html/
     networks:
       - app-network
+    restart: always
+
   # MySQL database service
   db:
     image: mysql:8.0
@@ -22,7 +23,7 @@
       - ./sql:/mysql
     networks:
       - app-network
-
+    restart: always
 
   # PHPMYADMIN
   phpmyadmin:
@@ -34,7 +35,7 @@
       - 8080:80
     networks:
       - app-network
-
+    restart: always
 
   # Nginx service
   nginx:
@@ -49,7 +50,7 @@
       - ./nginx:/var/log/nginx/
     networks:
       - app-network
-
+    restart: always
 
 networks:
   app-network:
