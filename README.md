@@ -351,6 +351,50 @@ sudo nano /etc/default/isc-dhcp-server                  # modificación del arch
 >
 > 🚩 [Ver informe de errores](#errores-con-el-router)
 
+
+## 󠁧󠁢󠁷🐋 Docker
+<details>
+  <summary>Explicación 🔽</summary>
+  
+  En nuestro proyecto, utilizaremos Docker para optimizar recursos y simplificar la gestión de nuestras aplicaciones.
+  Docker nos permitirá desplegar contenedores ligeros, asegurando que cada servicio se ejecute de manera aislada y eficiente. Esto facilitará el desarrollo, la escalabilidad y el mantenimiento del sistema, ya que cada componente (base de datos, servidor web, herramientas de gestión, etc.) estará empaquetado en su propio contenedor con todas sus dependencias.
+</details>
+
+<details>
+  <summary>🛠️  Configuración Docker 🔽</summary>
+
+Para desplegar nuestros contenedores, primero creamos una máquina virtual en Proxmox, a la cual le asignamos una IP fija: 10.20.30.15 dentro de nuestra red interna.
+
+Una vez creada la VM, procedimos a instalar Docker. Como solo usamos un usuario llamado "docker", añadiremos dicho usuario al grupo de Docker y le damos todos los permisos para que pueda crear y administrar los contenedores. 
+
+Para facilitar la administración visual de los contenedores, instalamos Portainer como un contenedor en Docker.
+
+Para gestionar los contenedores, accedemos a Portainer desde una máquina virtual con Debian Desktop, ingresando en el navegador la Ip del equipo seguido del puerto que configuramos para portainer. `10.20.30.15:9443`
+Aquí podemos visualizar y administrar nuestros contenedores de forma intuitiva, facilitando la gestión de servicios como la base de datos, Nginx y otros.
+
+```
+# comandos usados
+
+sudo usermod -aG docker $USER  # Agregar usuario al grupo Docker (requiere reiniciar sesión)
+
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest  # creación de contenedor portainer 
+```
+</details>
+
+<details>
+  <summary>🛠️  Configuración Docker-Compose 🔽</summary>
+
+  Para agilizar el despliegue de los contenedores que contendrán nuestra página web y base de datos, utilizamos Docker-Compose. Con esta herramienta, podemos definir y gestionar múltiples servicios en un solo archivo de configuración `(docker-compose.yml)`, lo que facilita la implementación y administración del entorno.
+
+  [Archivo de configuración docker-compose](assets/docker-compose.yml)
+
+  Con esta configuración, conseguimos un entorno completo con PHP, MySQL, phpMyAdmin y Nginx, todos conectados en una red interna de Docker (app-network), lo que facilita la gestión y escalabilidad de nuestra aplicación.
+  
+</details>
+
+> 📎 [**Ver _anexo 3_ para configuración de Docker**](#anexo-3-configuración-de-docker) ⚠️
+>
+> 🚩 [Ver informe de errores](#errores-con-docker) ⚠️
 <hr>
 
 # 📎 Anexos
@@ -399,6 +443,22 @@ En este apartado se encuentran los detalles más específicos de configuración 
   Con estas líneas le pedimos al router que asigne direcciones IP solo en la interfaz ens19 para IPv4, usando las rutas de configuración y PID predeterminadas. No está configurado para IPv6.
 
   ![configuracion isc](assets/router_isc_dhcp.png)
+</details>
+
+## Anexo 3 (configuración de Docker)
+<details>
+  <summary>Ver anexo 🔽</summary>
+  
+  ### Organización de directorios en Docker
+  falta texto
+
+  ![directorios docker](assets/tree_docker.png)
+
+  ### Archivo de configuración Nginx
+  falta texto
+
+  ![configuracion nginx](assets/default_conf_nginx.png)
+  
 </details>
 
 <hr>
