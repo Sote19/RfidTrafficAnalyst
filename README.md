@@ -405,7 +405,6 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 
 docker-compose up -d  # crear los contenedores en segundo plano
 docker ps  # verificar que los contenedores están corriendo 
-     ```
   ```
   
 </details>
@@ -468,12 +467,12 @@ En este apartado se encuentran los detalles más específicos de configuración 
   <summary>Ver anexo 🔽</summary>
   
   ### Organización de directorios en Docker
-  falta texto
+  Para mantener nuestro proyecto ordenado y estructurado, hemos organizado los archivos y directorios de la siguiente manera. Gracias a esta estructura, docker-compose pude ejecutarse de forma correcta.
 
   ![directorios docker](assets/tree_docker.png)
 
   ### Archivo de configuración Nginx
-  falta texto
+  Para que nuestro servidor Nginx sirva correctamente nuestra aplicación, hemos modificado el archivo de configuración por defecto. En la imagen a continuación, se muestra el contenido del archivo `default.conf`, donde hemos ajustado la configuración para que apunte a nuestro archivo index.php y procese correctamente las peticiones a través de PHP-FPM.
 
   ![configuracion nginx](assets/default_conf_nginx.png)
   
