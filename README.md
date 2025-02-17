@@ -374,8 +374,21 @@ Para facilitar la administración visual de los contenedores, instalamos Portain
 Para gestionar los contenedores, accedemos a Portainer desde una máquina virtual con Debian Desktop, ingresando en el navegador la Ip del equipo seguido del puerto que configuramos para portainer. `10.20.30.15:9443`
 Aquí podemos visualizar y administrar nuestros contenedores de forma intuitiva, facilitando la gestión de servicios como la base de datos, Nginx y otros.
 
-```
+```bash
 # comandos usados
+
+###
+instalación docker
+
+sudo apt update && sudo apt upgrade -y # actualizar paquetes
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common # instalar dependencias necesarias
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg # agregar la clave GPG de Docker
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null # agregar el repositorio oficial de Docker
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io # instalar docker
+docker --version # verificar si docker está correctamente instalado
+
+###
 
 sudo usermod -aG docker $USER  # Agregar usuario al grupo Docker (requiere reiniciar sesión)
 
