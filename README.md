@@ -162,7 +162,8 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 # 󠁧󠁢󠁷🐋 Docker (introducción)
 Docker ofrece un método unificado para ejecutar su código. Actúa como un sistema operativo diseñado específicamente para contenedores. Así como una máquina virtual abstrae el hardware del servidor, los contenedores en Docker abstraen y virtualizan el sistema operativo del servidor, simplificando su gestión.
 
-> 🗞️ [**Ver documento Preguntas frecuentes de Docker**](assets/Preguntas frecuentes Docker.pdf)
+> 🗞️ [**Documento Preguntas frecuentes de Docker**](assets/Preguntas%20frecuentes%20Docker.pdf)
+> 
 > 🛠️ [**Ver la implementación de Docker en el proyecto.**](#-docker)
 
 <hr>
