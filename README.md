@@ -162,9 +162,21 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 # 󠁧󠁢󠁷🐋 Docker (introducción)
 Docker ofrece un método unificado para ejecutar su código. Actúa como un sistema operativo diseñado específicamente para contenedores. Así como una máquina virtual abstrae el hardware del servidor, los contenedores en Docker abstraen y virtualizan el sistema operativo del servidor, simplificando su gestión.
 
-> 🗞️ [**Documento Preguntas frecuentes de Docker**](assets/files/RfidTrafficAnalyst_Preguntas%20frecuentes%20Docker.pdf){:target="_blank"}
+> 🗞️ [**Documento Preguntas frecuentes de Docker**](assets/files/RfidTrafficAnalyst_Preguntas%20frecuentes%20Docker.pdf)
 > 
 > 🛠️ [**Ver la implementación de Docker en el proyecto.**](#-docker)
+
+# 🔒 pfSense
+pfSense es una distribución de firewall y enrutador basada en FreeBSD, diseñada para ofrecer seguridad y control de red de nivel empresarial. Es una solución de código abierto que permite gestionar el tráfico de la red, configurar VPNs, aplicar reglas de firewall avanzadas y monitorear el tráfico, todo desde una interfaz web intuitiva. Es ampliamente utilizado en entornos corporativos, educativos y domésticos por su flexibilidad, rendimiento y comunidad activa.
+
+> 🗞️ [**Documento Guía de instalación pfSense**](assets/files/RfidTrafficAnalyst_pfSense_Guia%20de%20Usuario.pdf)
+
+# ➿ BackUp
+Backup es el proceso de crear copias de seguridad de datos para protegerlos contra pérdidas, fallos de hardware, ataques cibernéticos o errores humanos. Existen diferentes tipos de copias de seguridad, como completas, incrementales y diferenciales, y pueden almacenarse en dispositivos locales, servidores remotos o en la nube. Contar con una estrategia de backup adecuada es fundamental para garantizar la continuidad y seguridad de la información en cualquier entorno, ya sea personal o empresarial.
+
+> 🗞️ [**Documento Guía de usaurio Backups**](assets/files/RfidTrafficAnalyst_Backup-script_Guia%20de%20usuario.pdf) || 🗞️ [**Documento Explicación scripts Backup**](assets/files/RfidTrafficAnalyst_Backup-script.pdf)
+>
+> ☕ [**Código Backup Base de Datos**](assets/scripts/backup_db.sh) || ☕ [**Código Backup de restauración**](assets/scripts/restore.sh) || ☕ [**Código Backup Full o incremental**](assets/scripts/backup_full_incremental.sh)
 
 <hr>
 
