@@ -478,6 +478,6 @@ crontab -e
   
   Al final decidimos programar la base de datos manualmente y empezó a funcionarnos a la perfección.
   
-  ![Archivo sql](assets/mysql.pdf)
+  ☕[Archivo sql](assets/mysql.pdf)
 </details>
 
