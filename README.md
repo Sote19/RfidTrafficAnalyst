@@ -472,9 +472,9 @@ crontab -e
 <details>
   <summary>Ver informe 🔽</summary>
   
-  El archivo ```rfid.sql``` que es el archivo donde se programa la base de datos daba errores con el docker-compose.yaml.
+  El archivo ```rfid.sql``` que es el archivo donde se programa la base de datos daba errores con el docker-compose.yml.
   
-  Probamos cambiando permisos, la ruta, el archivo .sql y él .yaml... Pero no encontrábamos la solución.
+  Probamos cambiando permisos, la ruta, el archivo .sql y él .yml... Pero no encontrábamos la solución.
   
   Al final decidimos programar la base de datos manualmente y empezó a funcionarnos a la perfección.
   
