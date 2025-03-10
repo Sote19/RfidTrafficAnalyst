@@ -226,7 +226,7 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
 <details>
   <summary>Imagen de arquitectura de red final 🔽</summary>
   
-  ![diagrama de red](assets/diagrama_red.PNG)
+  ![diagrama de red](assets/diagrama_red.png)
 </details>
 
 <details>
