@@ -371,6 +371,20 @@ Backup es el proceso de crear copias de seguridad de datos para protegerlos cont
 
 </details>
 
+## 📧 Ejabberd + Pidgin
+
+<details>
+  <summary>Explicación 🔽</summary>
+
+Ejabberd es un servidor de mensajería instantánea basado en el protocolo XMPP (Jabber). Es de código abierto, altamente escalable y utilizado para crear servicios de chat en tiempo real, como mensajería privada o grupal en aplicaciones y empresas.
+
+Pidgin es un cliente de mensajería instantánea multiprotocolo que permite conectarse a diferentes servicios de chat (como XMPP, IRC o Discord) desde una sola aplicación. Es de código abierto y compatible con complementos para ampliar sus funciones.
+> 🗞️ [**Documento Preguntas Frecuentes Ejabberd**](assets/files/RfidTrafficAnalyst_ChatTiempoReal_FAQs.pdf)
+> 
+> 🗞️ [**Página Guía de usuario Ejabberd + Pidgin**](https://gsoteras.gitbook.io/gsoteras/servidores/chat-tiempo-real)
+
+</details>
+
 <hr>
 
 # 📎 Anexos
