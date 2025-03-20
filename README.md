@@ -118,16 +118,19 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 </details>
 
 <details>
-  <summary>Tabla de arquitectura de los sistemas 🔽 ⚠️ </summary>
+  <summary>Tabla de arquitectura de los sistemas 🔽</summary>
   
   | Máquina       | S.O                  | Almacenamiento / Memoria| Servicio     | 
   |---------------|----------------------|-------------------------|--------------|
   | **Proxmox**   |Proxmox-VE 8.2        | 93Gb / 8Gb              |  Hypervisor  |
   | **Router**    |Ubuntu server 22.04.2 | 14Gb / 4Gb              |  DHCP        |
-  | **MySQL**     |Ubuntu server 22.04.2 | 14Gb / 4Gb              |Base de datos |
   | **Pi-Hole**   |Debian 12.7.0         | 14Gb / 512Mb            |      DNS     |
+  | **BackUp**    |Contenedor LXC        | 15Gb / 512Mb            | BackUp MySQL |
   | **Arduino**   |                      |                         | Lector RFID  |
-  | **NGinx**     |Ubuntu server 22.04.2 | 14Gb / 4Gb              |    Hosting   |
+  | **Docker**    |Ubuntu server 22.04.2 | 35Gb / 4Gb              | Contenedores |
+  | **MySQL**     |  Contenedor Docker   |                         |Base de datos |
+  | **Nginx**     |  Contenedor Docker   |                         | Hosting Web  |
+
 </details>
 
 <hr>
@@ -218,8 +221,8 @@ Para la creación de nuestro proyecto, vamos a usar Proxmox. Utilizaremos uno de
   | Pihole           | 10.20.30.10                                | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
   | Docker           | 10.20.30.15                                | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
   | Docker > Portainer | 10.20.30.15:9443                         | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
-  | Docker > MySQL   | 10.20.30.15:xxxx                           | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
-  | Docker > PHPMyAdmin | 10.20.30.15:xxxx                        | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Docker > MySQL   | 10.20.30.15:1234                           | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
+  | Docker > PHPMyAdmin | 10.20.30.15:8080                        | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
   | Docker > Nginx   | 10.20.30.15:88                             | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
   | Contenedor BKP   | 10.20.30.16                                | 10.20.30.1                          | vmbr1 (10.20.30.0/24)         |
 
