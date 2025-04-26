@@ -357,8 +357,11 @@ docker ps  # verificar que los contenedores están corriendo
   <summary>🛠️  Configuración BackUps 🔽</summary>
 
   Para garantizar la seguridad de los datos recopilados en los eventos, hemos implementado un sistema de copias de seguridad adaptado a la magnitud de cada feria.
+  
   Se ha creado un contenedor LXC con IP fija `10.20.30.16`, destinado a almacenar los respaldos de la base de datos. Para ello, hemos desarrollado un script que extrae la información almacenada y la envía comprimida al contenedor mediante `scp`, utilizando autenticación por clave RSA para evitar la necesidad de introducir contraseñas manualmente.
+ 
   Este script también actualiza un archivo de logs con el registro de cada backup realizado, y gestiona el almacenamiento eliminando automáticamente los archivos más antiguos, limitando el número máximo de copias a 4, para optimizar el espacio disponible.
+ 
   La ejecución automática del respaldo se ha programado en el `crontab` del usuario `root`, asegurando que solo un usuario autorizado pueda ejecutar y modificar el proceso.
   
   ☕ [**Código Backup implementado en el proyecto**](assets/scripts/backup_mysql.sh)
