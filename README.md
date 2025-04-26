@@ -401,6 +401,8 @@ docker ps  # verificar que los contenedores están corriendo
   
 </details>
 
+> ☕[Código Base de Datos](assets/scrips/rfid.sql)
+
 <hr>
 
 # ➕ EXTRAS
@@ -666,6 +668,5 @@ crontab -e
   
   Al final decidimos programar la base de datos manualmente y empezó a funcionarnos a la perfección.
   
-  ☕[Código Base de Datos ](assets/mysql.pdf)
 </details>
 
