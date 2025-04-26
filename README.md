@@ -136,7 +136,6 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 <hr>
 
 # Estilo de Marca
-## 🖼️ Logotipo
 <details>
   <summary>Explicación 🔽</summary>
   En este proyecto, hemos diseñado un logotipo que refleja los valores de innovación y dinamismo asociados a nuestra tecnología RFID. La forma principal está inspirada en una onda, un elemento que simboliza tanto la conectividad como el flujo constante de información, pilares fundamentales de nuestra actividad. La onda se presenta atravesando un objeto, lo que transmite una sensación de movimiento y energía, reforzando la idea de una tecnología que nunca se detiene y que conecta de manera fluida diferentes elementos.
@@ -329,6 +328,44 @@ docker ps  # verificar que los contenedores están corriendo
   
 </details>
 
+<details>
+  <summary>🛠️  Configuración Docker-Compose 🔽</summary>
+
+  Para agilizar el despliegue de los contenedores que contendrán nuestra página web y base de datos, utilizamos Docker-Compose. Con esta herramienta, podemos definir y gestionar múltiples servicios en un solo archivo de configuración `(docker-compose.yml)`, lo que facilita la implementación y administración del entorno.
+
+  [📑 Archivo de configuración docker-compose](assets/docker-compose.yml)
+
+  📑 **Servicios incluidos**
+  | Servicio     | Función                                        |
+  |--------------|------------------------------------------------|
+  | **PHP-FPM**  | Procesamiento de archivos PHP                  |
+  | **MySQL**    | Base de datos para almacenamiento de información |
+  | **phpMyAdmin** | Interfaz web para gestionar MySQL            |
+  | **Nginx**    | Servidor web que maneja las peticiones HTTP    |
+
+  Con esta configuración, conseguimos un entorno completo con PHP, MySQL, phpMyAdmin y Nginx, todos conectados en una red interna de Docker (app-network), lo que facilita la gestión y escalabilidad de nuestra aplicación.
+
+  ```bash
+# comandos usados
+
+sudo apt install -y docker-compose  # instalar docker-compose
+docker-compose up -d  # crear los contenedores en segundo plano
+docker ps  # verificar que los contenedores están corriendo 
+  ```
+  
+</details><details>
+  <summary>🛠️  Configuración BackUps 🔽</summary>
+
+  Para garantizar la seguridad de los datos recopilados en los eventos, hemos implementado un sistema de copias de seguridad adaptado a la magnitud de cada feria.
+  Se ha creado un contenedor LXC con IP fija `10.20.30.16`, destinado a almacenar los respaldos de la base de datos. Para ello, hemos desarrollado un script que extrae la información almacenada y la envía comprimida al contenedor mediante `scp`, utilizando autenticación por clave RSA para evitar la necesidad de introducir contraseñas manualmente.
+  Este script también actualiza un archivo de logs con el registro de cada backup realizado, y gestiona el almacenamiento eliminando automáticamente los archivos más antiguos, limitando el número máximo de copias a 4, para optimizar el espacio disponible.
+  La ejecución automática del respaldo se ha programado en el `crontab` del usuario `root`, asegurando que solo un usuario autorizado pueda ejecutar y modificar el proceso.
+  
+  ☕ [**Código Backup implementado en el proyecto**](assets/scripts/backup_mysql.sh)
+  
+</details>
+
+
 > 📎 [**Ver _anexo 3_ para configuración de Docker**](#anexo-3-configuración-de-docker)
 >
 > 🚩 [Ver informe de errores](#errores-con-docker)
@@ -451,6 +488,21 @@ En este apartado se encuentran los detalles más específicos de configuración 
   Para que nuestro servidor Nginx sirva correctamente nuestra aplicación, hemos modificado el archivo de configuración por defecto. En la imagen a continuación, se muestra el contenido del archivo `default.conf`, donde hemos ajustado la configuración para que apunte a nuestro archivo index.php y procese correctamente las peticiones a través de PHP-FPM.
 
   ![configuracion nginx](assets/default_conf_nginx.png)
+
+  ### Crontab de root para backup
+  Se ha programado la ejecución automática del script de backup en el crontab del usuario root, configurando su ejecución cada 5 minutos para garantizar una copia continua de los datos sin intervención manual.
+
+  ![configuracion crontab](assets/crontab_bkp.png)
+
+  ### Archivo de logs BackUp
+  Cada vez que el script se ejecuta, registra su actividad en un archivo de logs. Este registro permite monitorizar en todo momento el estado de los backups y detectar posibles errores de forma rápida.
+  
+  ![archivo logs backup](assets/logs_bkp.png)
+
+  ### Archivos comprimidos BackUp
+  Tras cada ejecución del script, los datos respaldados se almacenan comprimidos en el contenedor LXC. El sistema mantiene un máximo de 4 copias, eliminando automáticamente las más antiguas para optimizar el espacio de almacenamiento. Este límite puede ser modificado fácilmente si se requiere.
+  
+  ![archivos backups](assets/archivos_bkp.png)
   
 </details>
 
