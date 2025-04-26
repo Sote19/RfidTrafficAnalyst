@@ -480,6 +480,7 @@ Pidgin es un cliente de mensajería instantánea multiprotocolo que permite cone
   Esta dirección la podemos encontrar en el ``Panel de control de Ngrok > Universal Gateway > Endpoints``
   
   Además, podemos especificar un puerto para mostrar en el navegador la interfaz de Proxmox como si estuviera en la red local.
+  
   [dirección tcp ngrok](assets/ngrok)
   
   ```bash
