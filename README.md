@@ -422,11 +422,73 @@ Backup es el proceso de crear copias de seguridad de datos para protegerlos cont
 Ejabberd es un servidor de mensajería instantánea basado en el protocolo XMPP (Jabber). Es de código abierto, altamente escalable y utilizado para crear servicios de chat en tiempo real, como mensajería privada o grupal en aplicaciones y empresas.
 
 Pidgin es un cliente de mensajería instantánea multiprotocolo que permite conectarse a diferentes servicios de chat (como XMPP, IRC o Discord) desde una sola aplicación. Es de código abierto y compatible con complementos para ampliar sus funciones.
+
 > 🗞️ [**Documento Preguntas Frecuentes Ejabberd**](assets/files/RfidTrafficAnalyst_ChatTiempoReal_FAQs.pdf)
 > 
 > 🗞️ [**Página Guía de usuario Ejabberd + Pidgin**](https://gsoteras.gitbook.io/gsoteras/servidores/chat-tiempo-real)
 
 </details>
+
+## 🛜 Ngrok
+
+<details>
+  <summary>Explicación 🔽</summary>
+
+  Para facilitar el acceso remoto a la interfaz web de Proxmox desde cualquier ubicación, se ha integrado Ngrok en el sistema. Esta herramienta permite exponer servicios locales a través de túneles seguros, sin necesidad de configurar el router o abrir puertos manualmente.
+
+  <details>
+    <summary>🔧 Instalación y configuración de Ngrok 🔽</summary>
+  
+  ### Registro y autenticación
+  - Crear una cuenta en ngrok.com y obtener el authtoken desde el panel de usuario.
+  - Instalar Ngrok en la máquina Proxmox siguiendo las instrucciones oficiales para Linux.
+  - Autenticar Ngrok.
+
+    ```bash
+    # comandos usados
+    wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+    tar -xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin/
+    ngrok config add-authtoken <tu_authtoken>
+    ngrok tcp 22
+    ```
+    
+  ### Integración con systemd
+  - Crear un servicio para que Ngrok se inicie automáticamente al arrancar el sistema.
+    
+    ```bash
+    nano /etc/systemd/system/ngrok.service
+    # ----------------
+    [Unit]
+    Description=Ngrok tunnel
+    After=network.target
+    [Service]
+    Restart=on-failure
+    User=root
+    ExecStart=/usr/local/bin/ngrok tcp 22
+    [Install]
+    WantedBy=multi-user.target
+    # ----------------
+    systemctl daemon-reload
+    systemctl start ngrok.service
+    systemctl enable ngrok.service
+    ```
+  
+  ### Acceso remoto a Proxmox
+  Una vez iniciado el servicio, Ngrok proporcionará una dirección TCP pública. Para acceder a la interfaz web de Proxmox de forma segura.
+  Esta dirección la podemos encontrar en el ``Panel de control de Ngrok > Universal Gateway > Endpoints``
+  
+  Además, podemos especificar un puerto para mostrar en el navegador la interfaz de Proxmox como si estuviera en la red local.
+  ```bash
+  ssh -L 1234:localhost:8006 root@<subdominio>.tcp.ngrok.io -p <puerto>
+  # en el navegador
+  https://localhost:1234
+  ```
+
+  > ⚠️ Importante: La dirección y el puerto asignados por Ngrok pueden cambiar en cada reinicio. Para obtener una dirección fija, es necesario configurar una dirección TCP reservada desde el panel de Ngrok (requiere plan de pago).
+
+  </details>
+</details>
+
 
 <hr>
 
