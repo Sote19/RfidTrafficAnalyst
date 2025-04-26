@@ -258,7 +258,6 @@ sudo nano /etc/default/isc-dhcp-server                  # modificación del arch
 >
 > 🚩 [Ver informe de errores](#errores-con-el-router)
 
-
 ## 󠁧󠁢󠁷🐋 Docker
 <details>
   <summary>Explicación 🔽</summary>
@@ -372,6 +371,35 @@ docker ps  # verificar que los contenedores están corriendo
 > 📎 [**Ver _anexo 3_ para configuración de Docker**](#anexo-3-configuración-de-docker)
 >
 > 🚩 [Ver informe de errores](#errores-con-docker)
+
+## Base de datos
+<details>
+  <summary>Explicación 🔽</summary>
+
+  El diseño de la base de datos se ha estructurado siguiendo principios de normalización y simplicidad, buscando representar de forma eficiente las necesidades del proyecto RFID Traffic Analyst.
+  
+  Se han definido cuatro entidades principales:
+  - Planes: Permite gestionar distintos niveles de acceso y funcionalidad para las empresas clientes, facilitando la escalabilidad y personalización de servicios.
+  - Empresas: Representa a cada cliente del sistema, vinculando su suscripción a un plan determinado y almacenando credenciales de acceso de manera segura.
+  - Antenas: Registra los dispositivos desplegados por cada empresa en los eventos o ferias, identificando su ubicación para rastrear el flujo de personas.
+  - Señales RFID: Almacena las lecturas de tarjetas RFID detectadas por las antenas, registrando tanto la hora de entrada como de salida, permitiendo así calcular el tiempo total de permanencia.
+  
+  Las relaciones entre las tablas siguen un modelo lógico de uno a muchos (1:N), lo que refleja de manera fiel la operativa real del sistema:
+  - Un plan puede ser contratado por múltiples empresas.
+  - Una empresa puede tener instaladas varias antenas.
+  - Cada antena puede registrar múltiples señales RFID durante un evento.
+
+  Además, se han implementado claves foráneas para garantizar la integridad referencial, y se ha creado un índice específico en el campo rfid_tag para optimizar las consultas relacionadas con la identificación de visitantes.
+  
+  Esta estructura modular y bien definida permitirá futuras ampliaciones del sistema, como la incorporación de estadísticas avanzadas, análisis de tráfico en tiempo real, o gestión de múltiples eventos simultáneos.
+</details>
+
+<details>
+  <summary>Diagrama base de datos 🔽</summary>
+
+  ![diseño base de datos](assest/basededatos)
+  
+</details>
 
 <hr>
 
