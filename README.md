@@ -397,7 +397,7 @@ docker ps  # verificar que los contenedores están corriendo
 <details>
   <summary>Diagrama base de datos 🔽</summary>
 
-  ![diseño base de datos](assets/basededatos)
+  ![diseño base de datos](assets/basededatos.png)
   
 </details>
 
