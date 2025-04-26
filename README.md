@@ -457,6 +457,7 @@ Pidgin es un cliente de mensajería instantánea multiprotocolo que permite cone
     
     ```bash
     nano /etc/systemd/system/ngrok.service
+
     # ----------------
     [Unit]
     Description=Ngrok tunnel
@@ -468,6 +469,7 @@ Pidgin es un cliente de mensajería instantánea multiprotocolo que permite cone
     [Install]
     WantedBy=multi-user.target
     # ----------------
+
     systemctl daemon-reload
     systemctl start ngrok.service
     systemctl enable ngrok.service
@@ -478,6 +480,7 @@ Pidgin es un cliente de mensajería instantánea multiprotocolo que permite cone
   Esta dirección la podemos encontrar en el ``Panel de control de Ngrok > Universal Gateway > Endpoints``
   
   Además, podemos especificar un puerto para mostrar en el navegador la interfaz de Proxmox como si estuviera en la red local.
+  
   ```bash
   ssh -L 1234:localhost:8006 root@<subdominio>.tcp.ngrok.io -p <puerto>
   # en el navegador
