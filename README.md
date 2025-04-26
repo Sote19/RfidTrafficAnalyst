@@ -481,7 +481,7 @@ Pidgin es un cliente de mensajería instantánea multiprotocolo que permite cone
   
   Además, podemos especificar un puerto para mostrar en el navegador la interfaz de Proxmox como si estuviera en la red local.
   
-  [dirección tcp ngrok](assets/ngrok.png)
+  ![dirección tcp ngrok](assets/ngrok.png)
   
   ```bash
   ssh -L 1234:localhost:8006 root@<subdominio>.tcp.ngrok.io -p <puerto>
