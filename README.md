@@ -401,7 +401,7 @@ docker ps  # verificar que los contenedores están corriendo
   
 </details>
 
-> ☕[Código Base de Datos](assets/scrips/rfid.sql)
+> ☕[Código Base de Datos](assets/scripts/rfid.sql)
 
 <hr>
 
