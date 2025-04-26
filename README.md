@@ -372,11 +372,11 @@ docker ps  # verificar que los contenedores están corriendo
 >
 > 🚩 [Ver informe de errores](#errores-con-docker)
 
-## Base de datos
+## 🗃️ Base de datos
 <details>
   <summary>Explicación 🔽</summary>
 
-  El diseño de la base de datos se ha estructurado siguiendo principios de normalización y simplicidad, buscando representar de forma eficiente las necesidades del proyecto RFID Traffic Analyst.
+  El diseño de la base de datos se ha estructurado siguiendo principios de normalización y simplicidad, buscando representar de forma eficiente las necesidades del proyecto.
   
   Se han definido cuatro entidades principales:
   - Planes: Permite gestionar distintos niveles de acceso y funcionalidad para las empresas clientes, facilitando la escalabilidad y personalización de servicios.
@@ -397,7 +397,7 @@ docker ps  # verificar que los contenedores están corriendo
 <details>
   <summary>Diagrama base de datos 🔽</summary>
 
-  ![diseño base de datos](assest/basededatos)
+  ![diseño base de datos](assets/basededatos)
   
 </details>
 
