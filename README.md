@@ -398,10 +398,45 @@ docker ps  # verificar que los contenedores están corriendo
   <summary>Diagrama base de datos 🔽</summary>
 
   ![diseño base de datos](assets/basededatos.png)
-  
+
 </details>
 
 > ☕[Código Base de Datos](assets/scripts/rfid.sql)
+
+## 💦 Arudino
+<details>
+  <summary>Explicación 🔽</summary>
+Hemos implementado un sistema con dos placas, una Arduino Mega y una ESP32, equipadas con lectores RFID para simular antenas receptoras. Estas antenas capturan los datos de las tarjetas RFID asignadas a los usuarios. Los datos recopilados se envían a través de un script en Python, que se encarga de procesarlos y estructurarlos adecuadamente.
+  
+AQUI QUIERO UN PUTO INTRO PERO NO ME SALE, SU PUTA MADRE
+
+Posteriormente, la información procesada se almacena en una base de datos MySQL, desplegada en un contenedor Docker para garantizar escalabilidad y portabilidad. Este sistema integra hardware y software de manera eficiente, proporcionando una solución práctica y segura para la gestión de datos RFID.
+</details>
+
+> ☕[Código Arduino Mega](assets/scripts/ArduinoMega.pdf)
+> 
+> ☕[Código Arduino Wrover](assets/scripts/ArduinoWrover.pdf)
+> 
+> ☕[Código Python](assets/scripts/Python.py)
+>
+> 🚩 [Ver informe de errores](#errores-con-arduino)
+
+<details>
+  <summary>🔥 Mapa de calor 🔽</summary>
+  Estos scripts están diseñados para procesar y visualizar los datos recopilados por las antenas RFID, previamente almacenados en una base de datos MySQL. A través de consultas SQL y herramientas de visualización como Matplotlib y Pandas, se generan representaciones     gráficas que facilitan la interpretación de la afluencia de personas en las áreas monitoreadas por las antenas.
+
+- El primer script crea un mapa de calor bidimensional que simula una cuadrícula de antenas, asignando colores en función de la cantidad de señales detectadas.
+- El segundo script utiliza un gráfico de barras para mostrar la cantidad de señales captadas por cada antena, proporcionando una vista más compacta y comparativa.
+- El tercer script integra la base de datos MySQL para obtener datos en tiempo real, transformándolos en una matriz que representa la distribución de señales y generando un mapa de calor dinámico.
+
+En conjunto, estos scripts permiten analizar de forma clara y visual la actividad registrada por el sistema RFID, ofreciendo una solución práctica y escalable para gestionar y comprender los datos recolectados.
+
+> ☕[Código Python X](assets/scripts/.)
+> 
+> ☕[Código Python Y](assets/scripts/.)
+> 
+> ☕[Código Python Z](assets/scripts/.)
+</details>
 
 <hr>
 
@@ -667,6 +702,27 @@ crontab -e
   Probamos cambiando permisos, la ruta, el archivo .sql y él .yml... Pero no encontrábamos la solución.
   
   Al final decidimos programar la base de datos manualmente y empezó a funcionarnos a la perfección.
+  
+</details>
+
+## Errores con Arduino 🚩
+<details>
+  <summary>Ver informe 🔽</summary>
+  Durante el desarrollo de este apartado del proyecto, surgieron varios desafíos y errores que influyeron en el proceso de implementación.
+  A continuación, se detallan los más relevantes:
+  AQUI QUIERO UN PUTO INTRO SUS MUERTOS
+  
+  **Error 1:** *Errores en la Conexión del Cableado*
+   La configuración inicial del hardware presentó problemas debido a un desconocimiento sobre el correcto cableado de las placas Arduino y los módulos RFID.
+   Esto ocasionó fallos en la comunicación entre los componentes, lo que requirió tiempo adicional para estudiar la documentación y las especificaciones técnicas de los módulos.
+
+   **Error 2:** *Uso de Librerías Externas*
+   Para el funcionamiento del lector RFID, fue necesario utilizar librerías externas específicas. 
+   Identificar en plataformas como GitHub la librería adecuada que se adaptara a las necesidades del proyecto fue un proceso complicado, ya que muchas de las opciones disponibles no tenían documentación clara o estaban desactualizadas.
+
+   **Error 3:** *Conflicto entre el Serial de Arduino y Python*
+   Uno de los errores recurrentes fue intentar leer simultáneamente los datos del puerto serie en Arduino y Python. Esto generaba conflictos, ya que el puerto serie no puede ser usado por ambas plataformas al mismo tiempo.
+   La solución implicó gestionar precisamente cuándo, cómo y qué accedía al puerto serie, garantizando que Python pudiera leer los datos sin interferencias con el Arduino IDE.
   
 </details>
 
