@@ -328,31 +328,6 @@ docker ps  # verificar que los contenedores están corriendo
 </details>
 
 <details>
-  <summary>🛠️  Configuración Docker-Compose 🔽</summary>
-
-  Para agilizar el despliegue de los contenedores que contendrán nuestra página web y base de datos, utilizamos Docker-Compose. Con esta herramienta, podemos definir y gestionar múltiples servicios en un solo archivo de configuración `(docker-compose.yml)`, lo que facilita la implementación y administración del entorno.
-
-  [📑 Archivo de configuración docker-compose](assets/docker-compose.yml)
-
-  📑 **Servicios incluidos**
-  | Servicio     | Función                                        |
-  |--------------|------------------------------------------------|
-  | **PHP-FPM**  | Procesamiento de archivos PHP                  |
-  | **MySQL**    | Base de datos para almacenamiento de información |
-  | **phpMyAdmin** | Interfaz web para gestionar MySQL            |
-  | **Nginx**    | Servidor web que maneja las peticiones HTTP    |
-
-  Con esta configuración, conseguimos un entorno completo con PHP, MySQL, phpMyAdmin y Nginx, todos conectados en una red interna de Docker (app-network), lo que facilita la gestión y escalabilidad de nuestra aplicación.
-
-  ```bash
-# comandos usados
-
-sudo apt install -y docker-compose  # instalar docker-compose
-docker-compose up -d  # crear los contenedores en segundo plano
-docker ps  # verificar que los contenedores están corriendo 
-  ```
-  
-</details><details>
   <summary>🛠️  Configuración BackUps 🔽</summary>
 
   Para garantizar la seguridad de los datos recopilados en los eventos, hemos implementado un sistema de copias de seguridad adaptado a la magnitud de cada feria.
