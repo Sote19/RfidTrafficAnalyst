@@ -723,6 +723,10 @@ crontab -e
    **Error 3:** *Conflicto entre el Serial de Arduino y Python*
    Uno de los errores recurrentes fue intentar leer simultáneamente los datos del puerto serie en Arduino y Python. Esto generaba conflictos, ya que el puerto serie no puede ser usado por ambas plataformas al mismo tiempo.
    La solución implicó gestionar precisamente cuándo, cómo y qué accedía al puerto serie, garantizando que Python pudiera leer los datos sin interferencias con el Arduino IDE.
+
+   **Error 4:** *Añadir antenas*
+   En el archivo ```.sql``` que monta la Base de Datos, se genera la empresa RFID y la antena, así ambos valores están relacionados entre sí.
+   Esto causa que al añadir nuevas antenas físicas, se tengan que añadir manualmente a la base de datos.
   
 </details>
 
