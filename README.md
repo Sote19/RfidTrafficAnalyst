@@ -398,11 +398,11 @@ Posteriormente, la información procesada se almacena en una base de datos MySQL
 
 En conjunto, estos scripts permiten analizar de forma clara y visual la actividad registrada por el sistema RFID, ofreciendo una solución práctica y escalable para gestionar y comprender los datos recolectados.
 
-> ☕[Código Python Mapa de calor](assets/scripts/mapa_calor.py)
+> ☕[Código Python Mapa de calor](assets/scripts/mapa_calor_rfid.py)
 > 
-> ☕[Código Python Cuadricula](assets/scripts/cuadricula_mapa_calor.py)
+> ☕[Código Python Cuadricula](assets/scripts/cuadricula_mapa_calor_rfid.py)
 > 
-> ☕[Código Python Gráficos](assets/scripts/graficos_mapa_calor.py)
+> ☕[Código Python Gráficos](assets/scripts/graficos_mapa_calor_rfid.py)
 
 </details>
 
