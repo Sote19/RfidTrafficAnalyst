@@ -413,6 +413,27 @@ En conjunto, estos scripts permiten analizar de forma clara y visual la activida
 > ☕[Código Python Z](assets/scripts/.)
 </details>
 
+<details>
+  <summary>Explicación Implementación Ngrok 🔽</summary>
+  
+  En el contexto del proyecto, no sería estrictamente necesaria la implementación de Ngrok para la funcionalidad esencial, ya que está pensado para desplegarse en ferias y eventos a través de una red local, donde los dispositivos se comunican entre sí sin necesidad de acceso externo.
+  
+  Sin embargo, para la presentación del proyecto y la posibilidad de usar los lectores RFID desde ubicaciones remotas (en distintas redes), se implementó un túnel utilizando Ngrok.
+Para ello, fue necesario modificar el código inicialmente diseñado para uso local, ajustando el puerto de conexión y dirigiendo la comunicación hacia localhost en vez de una dirección IP concreta.
+
+### Configuración del tunel
+Ngrok se configuró para redirigir toda la información enviada desde un equipo local hacia un puerto específico (por ejemplo, 1234), y enviarla a través del túnel hasta el servidor Proxmox. Una vez en Proxmox, se redirige la conexión hacia la IP y puerto del router virtual, el cual ya está configurado con reglas de port forwarding para que toda la información recibida en el puerto 1234 se envíe a la base de datos MySQL del contenedor.
+
+```
+# comando usado para hacer la conexión
+ssh -N -L <puertoLocalHost>:<IPRouterVirtual>:<puertoRouterVirtual> root@x.tcp.eu.ngrok.io -p xxxx
+```
+
+### Antenas y ejecución distribuida
+Tras realizar diversas pruebas, se concluyó que es necesario ejecutar cada lector RFID (Arduino) desde un equipo distinto, debido a conflictos de puerto y concurrencia. Además, cada script Python debe especificar el ID de la antena que está utilizando. Esta identificación permite que la base de datos relacione correctamente cada antena con la empresa y ubicación correspondiente, permitiendo un registro organizado y fiable de las señales RFID detectadas.
+
+</details>
+
 <hr>
 
 # ➕ EXTRAS
