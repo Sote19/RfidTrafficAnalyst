@@ -381,9 +381,8 @@ docker ps  # verificar que los contenedores están corriendo
 ## 🔌 Arudino
 <details>
   <summary>Explicación 🔽</summary>
-Hemos implementado un sistema con dos placas, una Arduino Mega y una ESP32, equipadas con lectores RFID para simular antenas receptoras. Estas antenas capturan los datos de las tarjetas RFID asignadas a los usuarios. Los datos recopilados se envían a través de un script en Python, que se encarga de procesarlos y estructurarlos adecuadamente.
   
-AQUI QUIERO UN PUTO INTRO PERO NO ME SALE, SU PUTA MADRE
+Hemos implementado un sistema con dos placas, una Arduino Mega y una ESP32, equipadas con lectores RFID para simular antenas receptoras. Estas antenas capturan los datos de las tarjetas RFID asignadas a los usuarios. Los datos recopilados se envían a través de un script en Python, que se encarga de procesarlos y estructurarlos adecuadamente.
 
 Posteriormente, la información procesada se almacena en una base de datos MySQL, desplegada en un contenedor Docker para garantizar escalabilidad y portabilidad. Este sistema integra hardware y software de manera eficiente, proporcionando una solución práctica y segura para la gestión de datos RFID.
 </details>
@@ -427,9 +426,9 @@ Tras realizar diversas pruebas, se concluyó que es necesario ejecutar cada lect
 
 </details>
 
-> ☕[Código Arduino Mega](assets/files/ArduinoMega.pdf)
+> 🗞️[Guía Arduino Mega](assets/files/ArduinoMega.pdf)
 > 
-> ☕[Código Arduino Wrover](assets/files/ArduinoWrover.pdf)
+> 🗞️[Guía Arduino Wrover](assets/files/ArduinoWrover.pdf)
 > 
 > ☕[Código Python en red local](assets/scripts/python_local.py) y ☕[Código Python en red externa](assets/scripts/python_externa.py)
 >
