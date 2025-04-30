@@ -378,7 +378,7 @@ docker ps  # verificar que los contenedores están corriendo
 
 > ☕[Código Base de Datos](assets/scripts/rfid.sql)
 
-## 💦 Arudino
+## 🔌 Arudino
 <details>
   <summary>Explicación 🔽</summary>
 Hemos implementado un sistema con dos placas, una Arduino Mega y una ESP32, equipadas con lectores RFID para simular antenas receptoras. Estas antenas capturan los datos de las tarjetas RFID asignadas a los usuarios. Los datos recopilados se envían a través de un script en Python, que se encarga de procesarlos y estructurarlos adecuadamente.
@@ -387,14 +387,6 @@ AQUI QUIERO UN PUTO INTRO PERO NO ME SALE, SU PUTA MADRE
 
 Posteriormente, la información procesada se almacena en una base de datos MySQL, desplegada en un contenedor Docker para garantizar escalabilidad y portabilidad. Este sistema integra hardware y software de manera eficiente, proporcionando una solución práctica y segura para la gestión de datos RFID.
 </details>
-
-> ☕[Código Arduino Mega](assets/scripts/ArduinoMega.pdf)
-> 
-> ☕[Código Arduino Wrover](assets/scripts/ArduinoWrover.pdf)
-> 
-> ☕[Código Python en red local](assets/scripts/python_local.py) y ☕[Código Python en red externa](assets/scripts/python_externa.py)
->
-> 🚩 [Ver informe de errores](#errores-con-arduino)
 
 <details>
   <summary>Mapa de calor 🔽</summary>
@@ -406,11 +398,12 @@ Posteriormente, la información procesada se almacena en una base de datos MySQL
 
 En conjunto, estos scripts permiten analizar de forma clara y visual la actividad registrada por el sistema RFID, ofreciendo una solución práctica y escalable para gestionar y comprender los datos recolectados.
 
-> ☕[Código Python X](assets/scripts/.)
+> ☕[Código Python Mapa de calor](assets/scripts/mapa_calor.py)
 > 
-> ☕[Código Python Y](assets/scripts/.)
+> ☕[Código Python Cuadricula](assets/scripts/cuadricula_mapa_calor.py)
 > 
-> ☕[Código Python Z](assets/scripts/.)
+> ☕[Código Python Gráficos](assets/scripts/graficos_mapa_calor.py)
+
 </details>
 
 <details>
@@ -433,6 +426,14 @@ ssh -N -L <puertoLocalHost>:<IPRouterVirtual>:<puertoRouterVirtual> root@x.tcp.e
 Tras realizar diversas pruebas, se concluyó que es necesario ejecutar cada lector RFID (Arduino) desde un equipo distinto, debido a conflictos de puerto y concurrencia. Además, cada script Python debe especificar el ID de la antena que está utilizando. Esta identificación permite que la base de datos relacione correctamente cada antena con la empresa y ubicación correspondiente, permitiendo un registro organizado y fiable de las señales RFID detectadas.
 
 </details>
+
+> ☕[Código Arduino Mega](assets/files/ArduinoMega.pdf)
+> 
+> ☕[Código Arduino Wrover](assets/files/ArduinoWrover.pdf)
+> 
+> ☕[Código Python en red local](assets/scripts/python_local.py) y ☕[Código Python en red externa](assets/scripts/python_externa.py)
+>
+> 🚩 [Ver informe de errores](#errores-con-arduino)
 
 <hr>
 
@@ -704,9 +705,9 @@ crontab -e
 ## Errores con Arduino 🚩
 <details>
   <summary>Ver informe 🔽</summary>
+  
   Durante el desarrollo de este apartado del proyecto, surgieron varios desafíos y errores que influyeron en el proceso de implementación.
   A continuación, se detallan los más relevantes:
-  AQUI QUIERO UN PUTO INTRO SUS MUERTOS
   
   **Error 1:** *Errores en la Conexión del Cableado*
    La configuración inicial del hardware presentó problemas debido a un desconocimiento sobre el correcto cableado de las placas Arduino y los módulos RFID.
