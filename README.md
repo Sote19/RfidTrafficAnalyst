@@ -392,12 +392,12 @@ Posteriormente, la información procesada se almacena en una base de datos MySQL
 > 
 > ☕[Código Arduino Wrover](assets/scripts/ArduinoWrover.pdf)
 > 
-> ☕[Código Python](assets/scripts/Python.py)
+> ☕[Código Python en red local](assets/scripts/python_local.py) y ☕[Código Python en red externa](assets/scripts/python_externa.py)
 >
 > 🚩 [Ver informe de errores](#errores-con-arduino)
 
 <details>
-  <summary>🔥 Mapa de calor 🔽</summary>
+  <summary>Mapa de calor 🔽</summary>
   Estos scripts están diseñados para procesar y visualizar los datos recopilados por las antenas RFID, previamente almacenados en una base de datos MySQL. A través de consultas SQL y herramientas de visualización como Matplotlib y Pandas, se generan representaciones     gráficas que facilitan la interpretación de la afluencia de personas en las áreas monitoreadas por las antenas.
 
 - El primer script crea un mapa de calor bidimensional que simula una cuadrícula de antenas, asignando colores en función de la cantidad de señales detectadas.
