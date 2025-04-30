@@ -256,7 +256,7 @@ sudo nano /etc/default/isc-dhcp-server                  # modificación del arch
 
 > 📎 [**Ver _anexo 2_ para configuración del Router**](#anexo-2-configuración-del-router)
 >
-> 🚩 [Ver informe de errores](#errores-con-el-router)
+> 🚩 [Ver informe de errores](#errores-con-el-router-)
 
 ## 󠁧󠁢󠁷🐋 Docker
 <details>
@@ -345,7 +345,7 @@ docker ps  # verificar que los contenedores están corriendo
 
 > 📎 [**Ver _anexo 3_ para configuración de Docker**](#anexo-3-configuración-de-docker)
 >
-> 🚩 [Ver informe de errores](#errores-con-docker)
+> 🚩 [Ver informe de errores](#errores-con-docker-)
 
 ## 🗃️ Base de datos
 <details>
@@ -392,9 +392,9 @@ Posteriormente, la información procesada se almacena en una base de datos MySQL
   <summary>Mapa de calor 🔽</summary>
   Estos scripts están diseñados para procesar y visualizar los datos recopilados por las antenas RFID, previamente almacenados en una base de datos MySQL. A través de consultas SQL y herramientas de visualización como Matplotlib y Pandas, se generan representaciones     gráficas que facilitan la interpretación de la afluencia de personas en las áreas monitoreadas por las antenas.
 
-- El primer script crea un mapa de calor bidimensional que simula una cuadrícula de antenas, asignando colores en función de la cantidad de señales detectadas.
-- El segundo script utiliza un gráfico de barras para mostrar la cantidad de señales captadas por cada antena, proporcionando una vista más compacta y comparativa.
-- El tercer script integra la base de datos MySQL para obtener datos en tiempo real, transformándolos en una matriz que representa la distribución de señales y generando un mapa de calor dinámico.
+- El primer script integra la base de datos MySQL para obtener datos en tiempo real, transformándolos en una matriz que representa la distribución de señales y generando un mapa de calor dinámico.
+- El segundo script crea un mapa de calor bidimensional que simula una cuadrícula de antenas, asignando colores en función de la cantidad de señales detectadas.
+- El tercer script utiliza un gráfico de barras para mostrar la cantidad de señales captadas por cada antena, proporcionando una vista más compacta y comparativa.
 
 En conjunto, estos scripts permiten analizar de forma clara y visual la actividad registrada por el sistema RFID, ofreciendo una solución práctica y escalable para gestionar y comprender los datos recolectados.
 
@@ -433,7 +433,7 @@ Tras realizar diversas pruebas, se concluyó que es necesario ejecutar cada lect
 > 
 > ☕[Código Python en red local](assets/scripts/python_local.py) y ☕[Código Python en red externa](assets/scripts/python_externa.py)
 >
-> 🚩 [Ver informe de errores](#errores-con-arduino)
+> 🚩 [Ver informe de errores](#errores-con-arduino-)
 
 <hr>
 
