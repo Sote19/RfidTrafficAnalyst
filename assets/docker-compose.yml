@@ -1,6 +1,6 @@
-version: '3.8'
-
+version: "3.8"
 services:
+
   # PHP service
   phpfpm:
     image: php:8-fpm
@@ -9,55 +9,50 @@ services:
       - ./html:/var/www/html/
     networks:
       - app-network
-    restart: always
 
   # MySQL database service
   db:
     image: mysql:8.0
-    container_name: mysql
+    container_name: MySQL
     ports:
-      - "1234:3306"  # Exponer puerto 3306 para conexión con MySQL
+      - "3306:3306"  # Mapeo del puerto correcto de MySQL
     environment:
       MYSQL_ROOT_PASSWORD: Mangorfid
-      MYSQL_DATABASE: rfid  # Crea la base de datos si no existe
     volumes:
-      - ./sql:/docker-entrypoint-initdb.d:ro  # Montar el archivo SQL para inicialización
-      - db_data:/var/lib/mysql               # Persistencia de datos
+      - ./mysql_data:/var/lib/mysql
+      - ./sql/init_rfid.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
-    restart: always
 
   # PHPMYADMIN
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin
+    container_name: PhpMyAdmin
     environment:
-      PMA_HOST: mysql  # Conexión al contenedor MySQL
-      PMA_USER: root
-      PMA_PASSWORD: Mangorfid
+      PMA_HOST: db
     ports:
       - 8080:80
+    depends_on:
+      - db
     networks:
       - app-network
-    restart: always
 
   # Nginx service
   nginx:
     image: nginx
-    container_name: nginx
+    container_name: Nginx
+    working_dir: /etc/nginx
     ports:
       - 88:80
     volumes:
       - ./html:/var/www/html/
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx:/var/log/nginx/
+    depends_on:
+      - phpfpm
     networks:
       - app-network
-    restart: always
 
 networks:
   app-network:
     driver: bridge
-
-volumes:
-  db_data:
