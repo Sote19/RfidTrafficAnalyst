@@ -3,10 +3,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time
 
-# 🧠 Mapa 5x5 de IDs de antenas (simulación de feria)
-matriz_ids = np.arange(1, 26).reshape((5, 5))
+# 🧠 Crear disposición aleatoria de antenas (IDs del 1 al 25 en 5x5)
+ids = np.random.permutation(np.arange(1, 26))
+matriz_ids = ids.reshape((5, 5))
 
-# 🖼️ Activar modo interactivo
+# 🎨 Activar modo interactivo
 plt.ion()
 fig, ax = plt.subplots(figsize=(8, 8))
 
@@ -38,7 +39,7 @@ def actualizar_mapa():
 
         datos_antenas = {id_antena: cantidad for id_antena, cantidad in resultados}
 
-        # Preparar matrices de cantidad y color
+        # Preparar matrices
         cantidad_senales = np.zeros(matriz_ids.shape)
         colores = np.empty(matriz_ids.shape + (3,))
 
@@ -49,21 +50,22 @@ def actualizar_mapa():
                 cantidad_senales[i, j] = cantidad
                 colores[i, j] = color_por_cantidad(cantidad)
 
-        # 🧼 Limpiar y redibujar gráfico
+        # 🔄 Redibujar gráfico
         ax.clear()
-        ax.imshow(colores, extent=[0, 5, 0, 5])
-        ax.set_xticks(np.arange(0.5, 5.5, 1))
-        ax.set_xticklabels([f'{id}' for id in matriz_ids[0]])
-        ax.set_yticks(np.arange(0.5, 5.5, 1))
-        ax.set_yticklabels([f'Fila {i+1}' for i in range(5)])
-        ax.grid(color='black', linestyle='-', linewidth=1)
+        ax.imshow(colores, extent=[0, 5, 0, 5], origin='lower')
 
-        for i in range(matriz_ids.shape[0]):
-            for j in range(matriz_ids.shape[1]):
-                ax.text(j + 0.5, 4.5 - i, int(cantidad_senales[i, j]),
+        # Quitar ejes y líneas
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.set_title('Mapa de Calor RFID - Feria (5x5 aleatorio)', fontsize=14)
+
+        # Añadir texto con cantidad en el centro de cada celda
+        for i in range(5):
+            for j in range(5):
+                cantidad = int(cantidad_senales[i, j])
+                ax.text(j + 0.5, i + 0.5, f'{cantidad}',
                         ha='center', va='center', fontsize=12, color='black')
 
-        ax.set_title('Mapa de Calor RFID - Feria (5x5)')
         plt.draw()
         plt.pause(0.001)
 
