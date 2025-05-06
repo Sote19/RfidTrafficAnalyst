@@ -1,81 +1,87 @@
 import mysql.connector
 import matplotlib.pyplot as plt
 import numpy as np
+import time
 
-# 📌 1. Conectar a tu base de datos
-conexion = mysql.connector.connect(
-    host="localhost",
-    user="admin",
-    password="Mangorfid",
-    database="rfid"
-)
+# 🧠 IDs manuales de antenas en posiciones fijas (2 antenas)
+matriz_ids = np.array([[1, 2]])
 
-cursor = conexion.cursor()
+# 🖼️ Activar modo interactivo
+plt.ion()
+fig, ax = plt.subplots(figsize=(6, 3))
 
-# 📌 2. Consultar cantidad de señales por antena
-consulta = """
-SELECT id_antena, COUNT(*) AS cantidad
-FROM rfid_senales
-GROUP BY id_antena
-"""
-cursor.execute(consulta)
-
-# 📌 3. Procesar datos
-resultados = cursor.fetchall()
-
-# Convertir resultados a un diccionario {id_antena: cantidad}
-datos_antenas = {id_antena: cantidad for id_antena, cantidad in resultados}
-
-# 🧠 Imagina que tienes antenas en una cuadrícula 2x2 (puedes adaptarlo)
-# Vamos a mapear las antenas manualmente a posiciones
-# Ejemplo: id_antena 1 arriba izquierda, id_antena 2 arriba derecha, etc.
-matriz_ids = np.array([
-    [1, 2],
-    [3, 4]
-])
-
-# Crear matriz de cantidades
-cantidad_senales = np.zeros(matriz_ids.shape)
-
-for i in range(matriz_ids.shape[0]):
-    for j in range(matriz_ids.shape[1]):
-        id_antena = matriz_ids[i, j]
-        cantidad_senales[i, j] = datos_antenas.get(id_antena, 0)
-
-# 📌 4. Definir función de colores
-def color_segun_afluencia(cantidad):
-    if cantidad == 0:
-        return (1,1,1)  # Blanco
-    elif 1 <= cantidad <= 5:
-        return (0,1,0)  # Verde
-    elif 6 <= cantidad <= 10:
-        return (1,0.65,0)  # Naranja
+def color_por_cantidad(cantidad):
+    if cantidad <= 1:
+        return (0, 1, 0)     # Verde
+    elif cantidad == 2:
+        return (1, 0.65, 0)  # Naranja
     else:
-        return (1,0,0)  # Rojo
+        return (1, 0, 0)     # Rojo
 
-# Crear matriz de colores
-colores = np.empty(cantidad_senales.shape + (3,))
-for i in range(cantidad_senales.shape[0]):
-    for j in range(cantidad_senales.shape[1]):
-        colores[i,j] = color_segun_afluencia(cantidad_senales[i,j])
+def actualizar_mapa():
+    # 🔄 Conectar, consultar y cerrar por cada ciclo para asegurar actualización en tiempo real
+    try:
+        conexion = mysql.connector.connect(
+            host="10.20.30.15",
+            user="admin",
+            password="Mangorfid",
+            database="rfid"
+        )
+        cursor = conexion.cursor()
 
-# 📌 5. Pintar mapa de calor
-fig, ax = plt.subplots()
-ax.imshow(colores, extent=[0,2,0,2])
+        cursor.execute("""
+            SELECT id_antena, COUNT(*) AS cantidad
+            FROM rfid_senales
+            WHERE estado = 'activo'
+            GROUP BY id_antena
+        """)
+        resultados = cursor.fetchall()
 
-ax.set_xticks(np.arange(0, 2, 1))
-ax.set_yticks(np.arange(0, 2, 1))
-ax.grid(color='black', linestyle='-', linewidth=2)
+        datos_antenas = {id_antena: cantidad for id_antena, cantidad in resultados}
 
-# Escribir cantidad de señales en cada celda
-for i in range(cantidad_senales.shape[0]):
-    for j in range(cantidad_senales.shape[1]):
-        ax.text(j + 0.5, 1.5 - i, int(cantidad_senales[i,j]),
-                ha='center', va='center', fontsize=12, color='black')
+        # Preparar matrices de cantidad y color
+        cantidad_senales = np.zeros(matriz_ids.shape)
+        colores = np.empty(matriz_ids.shape + (3,))
 
-ax.set_title('Mapa de calor de antenas RFID - Señales detectadas')
-plt.show()
+        for i in range(matriz_ids.shape[0]):
+            for j in range(matriz_ids.shape[1]):
+                id_antena = matriz_ids[i, j]
+                cantidad = datos_antenas.get(id_antena, 0)
+                cantidad_senales[i, j] = cantidad
+                colores[i, j] = color_por_cantidad(cantidad)
 
-# 📌 6. Cerrar conexión
-cursor.close()
-conexion.close()
+        # 🧼 Limpiar y redibujar gráfico
+        ax.clear()
+        ax.imshow(colores, extent=[0, 2, 0, 1])
+        ax.set_xticks([0.5, 1.5])
+        ax.set_xticklabels([f'Antena {id}' for id in matriz_ids[0]])
+        ax.set_yticks([])
+        ax.grid(color='black', linestyle='-', linewidth=2)
+
+        for j in range(matriz_ids.shape[1]):
+            ax.text(j + 0.5, 0.5, int(cantidad_senales[0, j]),
+                    ha='center', va='center', fontsize=14, color='black')
+
+        ax.set_title('Mapa de Calor RFID - Señales Activas')
+        plt.draw()
+        plt.pause(0.001)
+
+    except mysql.connector.Error as e:
+        print("❌ Error al consultar la base de datos:", e)
+    finally:
+        try:
+            cursor.close()
+            conexion.close()
+        except:
+            pass
+
+# 🔁 Loop con actualización cada 2 segundos
+try:
+    while True:
+        actualizar_mapa()
+        time.sleep(2)
+except KeyboardInterrupt:
+    print("⛔ Programa interrumpido por el usuario.")
+finally:
+    plt.ioff()
+    plt.close()
