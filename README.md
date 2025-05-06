@@ -8,8 +8,8 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
   
   En este proyecto exploraremos el mundo de los dispositivos IoT y la tecnología de transmisión por radiofrecuencia. Abordaremos temas como las ondas de radio y los distintos tipos de frecuencias existentes, en un ámbito innovador y en continuo desarrollo como el de los dispositivos IoT. Para ello, hemos optado por trabajar con la tecnología RFID, que combina los aspectos técnicos que buscamos analizar y desarrollar en este proyecto.
   
-  El sistema funcionará de la siguiente manera: a los participantes se les proporcionarán etiquetas RFID pasivas, que serán detectadas por antenas RFID estratégicamente colocadas en el recinto. Estas antenas, conectadas a un lector RFID integrado en una Raspberry Pi, ampliarán el alcance de la señal según el tamaño del espacio. Los datos recopilados en tiempo real serán almacenados en una base de datos para su posterior análisis, generando informes que permitirán interpretar las preferencias del público y optimizar futuras estrategias.
-  
+  El sistema funcionará de la siguiente manera: a los participantes se les proporcionarán etiquetas RFID pasivas, que serán detectadas por antenas RFID estratégicamente colocadas en el recinto. Estas antenas, conectadas a un lector RFID de Arduino, ampliarán el alcance de la señal según el tamaño del espacio. Los datos recopilados en tiempo real serán almacenados en una base de datos para su posterior análisis, generando informes que permitirán interpretar las preferencias del público y optimizar futuras estrategias.
+
   El objetivo principal es diseñar un sistema IoT para recopilar información en ferias comerciales, proporcionando a las empresas datos valiosos sobre el interés que generan entre los asistentes. Este sistema permitirá realizar un conteo preciso de las personas que se aproximan a cada puesto, así como medir el tiempo que permanecen en ellos. Además, la información recopilada se utilizará para obtener una visión general de los intereses del público, ayudando a las empresas a comprender mejor las preferencias de la población.
 
 </details>
@@ -30,8 +30,11 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 - - - **2.1.1 (Objetivo Operativo)** - Recopilar datos en tiempo real sobre el número de asistentes, ubicación y tiempo de permanencia en cada puesto.  
 - - **2.2 (Objetivo Específico)** - Asegurar la integridad, confidencialidad y disponibilidad de los datos recopilados por el sistema.
 - - - **2.2.1 (Objetivo Operativo)** - Implementar reglas de acceso y control en la base de datos para garantizar la seguridad de la información.
-- - - **2.2.2 (Objetivo Operativo)** - Usar protocolos cifrados para la transmisión de datos y mantener copias de seguridad automáticas para prevenir pérdida de información.  
+- - - **2.2.2 (Objetivo Operativo)** - Usar protocolos cifrados para la transmisión de datos y mantener copias de seguridad automáticas para prevenir pérdida de información.
 
+- **3 (Objetivo General)** - Aumentar nuestros conocimientos
+- - **3.1 (Objetivo Específico)** - Alcanzar ámbitos y conceptos nuevos.  
+- - - **3.1.1 (Objetivo Operativo)** - Hacer un trabajo personal extraescolar, para abastecernos de nueva teoría.  
 
 </details>
 
@@ -73,26 +76,13 @@ Sistema IoT con RFID que mide el interés de visitantes en ferias comerciales me
 </details>
 
 <details>
-  <summary>Cifrado 🔽</summary>
-  
-  En nuestro proyecto hemos elegido estas opciones de cifrado:
-  - FALTA DECIDIR
-</details>
-
-<details>
-  <summary>Certificados 🔽</summary>
-  
-  - OpenSSL -> TLS (de manera interna). 
-  - Cloudflare SSL (de manera externa).
-</details>
-
-<details>
   <summary>Software 🔽</summary>
   
   - Visual Studio
   - Trello
   - GitHub
   - ChatGPT
+  - Arduino
 </details>
 
 <details>
