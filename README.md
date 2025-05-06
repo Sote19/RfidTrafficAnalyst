@@ -240,8 +240,7 @@ sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.BKP   # creación de la copia 
 sudo nano /etc/dhcp/dhcpd.conf                          # modificación del archivo de configuración
 sudo nano /etc/default/isc-dhcp-server                  # modificación del archivo de asiganción de interfaz
 ```
-
-  ### Configuración de IPTables ⚠️
+  
 </details>
 
 > 📎 [**Ver _anexo 2_ para configuración del Router**](#anexo-2-configuración-del-router)
@@ -545,6 +544,16 @@ Pidgin es un cliente de mensajería instantánea multiprotocolo que permite cone
   </details>
 </details>
 
+<hr>
+
+# 🏁 Conclusiones
+<details>
+  <summary>Explicación 🔽</summary>
+
+  Este proyecto ha sido una experiencia enriquecedora que nos ha permitido adentrarnos en el mundo de la tecnología RFID y el IoT. A pesar de partir desde cero en conocimientos sobre Arduino, hemos logrado desarrollar un sistema funcional que recopila datos en tiempo real sobre el comportamiento de los asistentes en ferias comerciales. Este proceso nos ha brindado una valiosa curva de aprendizaje y nos ha demostrado el potencial de estas tecnologías en entornos reales.
+  
+  Reconocemos que, aunque los resultados obtenidos son satisfactorios, el proyecto posee un amplio margen de escalabilidad. En futuras iteraciones, consideramos implementar inteligencia artificial para un análisis más profundo de los datos recopilados. Además, contemplamos el desarrollo de una plataforma web donde cada empresa, según su plan contratado, pueda acceder a un portal personalizado con información en tiempo real y recibir informes detallados al finalizar el evento.
+</details>
 
 <hr>
 
